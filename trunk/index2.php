@@ -69,7 +69,7 @@
 
       // No user, print a link for the user to login
       $login_url = $facebook->getLoginUrl($params);
-	  print '<script>top.location.href = "' . $loginUrl . '"</script>'; // Weiterleitung zum Anfordern der Autorisierung
+	  print '<script>top.location.href = "' . $login_Url . '"</script>'; // Weiterleitung zum Anfordern der Autorisierung
     }
   ?>
 
