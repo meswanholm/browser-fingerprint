@@ -22,24 +22,55 @@
       try 
 	  {
         //Benutzer Informationen, davor Erlaubnis erfragen
-		$user_profile = $facebook->api('/me','GET');
-		echo "ID: " . $user_profile['id']; //ID
+		$user_profile = $facebook->api("/" . $user_id, "GET");
+		//ID
+		echo "ID: " . $user_profile['id'];
 		echo "</br>";
-		echo "Name: " . $user_profile['name']; //Name
+		//NAME
+		echo "Name: " . $user_profile['name'];
 		echo "</br>";
-		echo $user_profile['education']['0']['type'] . ": " . $user_profile['education']['0']['school']['name']; //Hochschule/Schule
+		//HOCHSCHULE/SCHULE
+		echo $user_profile['education']['0']['type'] . ": " . $user_profile['education']['0']['school']['name'];
 		echo "</br>";
-		if ($user_profile['gender'] == 'male') //Geschlecht
+		//GESCHLECHT
+		if ($user_profile['gender'] == 'male')
 			echo "Geschlecht: m&aumlnnlich"; 
 		else
 			echo "Geschlecht: weiblich";
-		echo "<img src=\"http://graph.facebook.com/" . $user_id . "/picture?type=large\" />"; //Profilbild
+		//PROFILBILD
+		echo "<img src=\"http://graph.facebook.com/" . $user_id . "/picture?type=large\" />";
+		echo "</br>";
+		//FREUNDE
+		$friends = $facebook->api("/" . $user_id . "/friends", "GET"); 
+		$friendsData = $friends['data'];
+		//Anzahl Freunde
+		echo "Anzahl Freunde: " . sizeof($friendsData);
+		echo "</br>";
 		
-		$access_token = $facebook->getAccessToken();
-		echo $access_token;
+		for ($i = 0; $i < sizeof($friendsData); $i++) 
+		{ 
+           $friend = $friendsData[$i]; 
+                     echo $friend['name'];
+					 echo "</br>";
+        }; 
+		//GRUPPEN
+		$groups = $facebook->api("/" . $user_id . "/groups", "GET"); 
+		$groupsData = $groups['data'];
+		//Anzahl Gruppen
+		echo "Anzahl Gruppen: " . sizeof($groupsData);
+		echo "</br>";
 		
-		$data = $facebook->api("https://graph.facebook.com/" . $user_id . "/groups");
-		print '<pre>' . print_r($data, true) . '</pre>';
+		for ($i = 0; $i < sizeof($groupsData); $i++) 
+		{ 
+           $group = $groupsData[$i]; 
+                     echo $group['name'];
+					 echo "</br>";
+        }; 
+		//GEBURTSTAG
+		echo "Geburtstag: " . $user_profile['birthday'];
+		
+			
+			
 			
 		//Logout-Button Generierung
 		$params = array( 'next' => 'http://localhost/index2.php'); //Wo geht es hin nach dem Logout?
@@ -52,8 +83,18 @@
         // user ID even though the access token is invalid.
         // In this case, we'll get an exception, so we'll
         // just ask the user to login again here.
-        $login_url = $facebook->getLoginUrl();
+		//Berechtigungen einholen
+		$params = array(
+			'fbconnect' => 0,
+			'canvas' => 1,
+			'req_perms' => 'user_birthday, user_interests, user_photos, user_groups',
+		);
+
+		// No user, print a link for the user to login
+		$login_url = $facebook->getLoginUrl();
         echo '<a href="' . $login_url . '">Login</a>';
+		echo "ERROR";
+		//print '<script>top.location.href = "' . $login_url . '"</script>'; // Weiterleitung zum Anfordern der Autorisierung
         error_log($e->getType());
         error_log($e->getMessage());
       }   
@@ -68,8 +109,9 @@
 	  );
 
       // No user, print a link for the user to login
-      $login_url = $facebook->getLoginUrl($params);
-	  print '<script>top.location.href = "' . $login_Url . '"</script>'; // Weiterleitung zum Anfordern der Autorisierung
+      $login_url = $facebook->getLoginUrl();
+	  //echo '<a href="' . $login_url . '">Login</a>';
+	  print '<script>top.location.href = "' . $login_url . '"</script>'; // Weiterleitung zum Anfordern der Autorisierung
     }
   ?>
 
