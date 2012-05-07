@@ -1,0 +1,7 @@
+Aufg. 
+1.Erweiterung um jquery-komponenten (egal welche)
+2. AJAX Abfrage vom Server, ohne dass die komplette Seite geladen wird.
+
+3. Datenbank / sicherer Login per https! sessions vergeben
+--> pwd/name check --> Vergabe sessionkey--> Übergabe sessionkey von Seite zu Seite oder über cookie  speichern
+

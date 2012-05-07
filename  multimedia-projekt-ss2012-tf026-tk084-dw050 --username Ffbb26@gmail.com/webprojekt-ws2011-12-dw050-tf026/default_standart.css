@@ -1,0 +1,226 @@
+﻿/*********************************************************************************/
+/*			                  Source History									 */
+/*-------------------------------------------------------------------------------*/
+/*2011-11-18|DW: Erste Version													 */
+/*			|TF: Ändern der px Angaben in em. |1em = 16px| 						 */
+/*			|TF: '#content_images' hinzugefügt  								 */
+/*			|DW: Navileiste hinzugefügt											 */	
+/*2011-12-23|TF: Login button hinzugefügt										 */
+/*																				 */
+/*********************************************************************************/
+
+
+/*Navileiste*/
+#navibutton_1:hover   
+{ 
+	color: white; 
+	background-color: #a0a0a0; 
+	text-decoration: none;
+}
+
+#navibutton_2:hover   
+{ 
+	color: white; 
+	background-color: #a0a0a0; 
+	text-decoration: none;
+}
+
+#navibutton_3:hover   
+{ 
+	color: white; 
+	background-color: #a0a0a0; 
+	text-decoration: none;
+}
+
+#navibutton_4:hover   
+{ 
+	color: white; 
+	background-color: #a0a0a0; 
+	text-decoration: none;
+}
+
+#navibutton_5:hover   
+{ 
+	color: white; 
+	background-color: #a0a0a0; 
+	text-decoration: none;
+}
+
+body {
+  background-color: #e3e3e3;
+  width: 56.25em;								/* Unterer Balken */
+}	
+
+#login_Button 
+{
+	width: 100px;
+	margin-left: 600px;
+	margin-bottom: 25px;
+	margin-top: 20px;
+	padding: 4px 4px 4px 4px;	
+}
+
+#logout_Button 
+{
+	width: 100px;
+	margin-left: 600px;
+	margin-bottom: 25px;
+	margin-top: 20px;
+	padding: 4px 4px 4px 4px;	
+}
+
+
+.content {
+	margin-left: 1.875em;						/* einrücken links*/
+	margin-right: 1.875em; 						/* einrücken rechts*/
+	padding: 0.625em;							/* innere Abstände links/rechts/oben/unten */
+	font-size: 0.815em;				
+	font-family: verdana;
+	color: #4d4d4d;								/* Schriftfarbe */
+	background-color: #f3f3f3;
+	min-height: 25em;
+							
+	border-radius: 0.625em;								/*abgerundete Ecken*/
+	-webkit-border-radius: 0.625em;						/*Chrome*/
+	-moz-border-radius: 0.625em;						/*Firefox*/
+	box-shadow: 0.625em 0.625em 0.625em #999;			/*Schlagschatten*/
+	-moz-box-shadow: 0.625em 0.625em 0.625em #999; 		/* Firefox */
+	-webkit-box-shadow: 0.625em 0.625em 0.625em #999; 	/* Chrome */
+}
+
+#bottom {
+	padding: 0.625em;									/* innere Abstände links/rechts/oben/unten */
+	font-size: 0.750em;				
+	font-family: verdana;
+	text-align:right;
+	color: #ffffff;										/* Schriftfarbe */
+	background-color: #a0a0a0;
+	border-radius: 0.625em;								/*abgerundete Ecken*/
+	-moz-border-radius: 0.425em;						/*Chrome*/
+	-webkit-border-radius: 0.625em;						/*Firefox*/
+	box-shadow: 0.625em 0.625em 0.625em #999;			/*Schlagschatten*/
+	-moz-box-shadow: 0.625em 0.625em 0.625em #999; 		/* Firefox */
+	-webkit-box-shadow: 0.625em 0.625em 0.625em #999; 	/* Chrome */
+
+}
+
+
+h1 {
+  font-family: Verdana;
+  font-size: 1em;
+  color: #4d4d4d;	
+  text-decoration: underline;
+}
+
+h2 {
+  font-size: 1em;
+  font-family: Verdana;
+  color: #008db5;	
+}
+	
+a {
+  font-family: Verdana;
+  font-size: 0.815em;
+  font-weight: bold;
+  color: #4d4d4d;
+}
+
+#content_images {
+	float: right;
+	margin-top: 0.150em;
+	margin-left: 1.500em;
+	margin-right: -0.250em;
+	border-radius: 0.625em;								/*abgerundete Ecken*/
+	-moz-border-radius: 0.300em;						/*Firefox*/
+	-webkit-border-radius: 0.300em;						/*Chrome*/
+	box-shadow: 0.000em 0.0000em 0.500em #999;			/*Schlagschatten*/
+	-moz-box-shadow: 0.000em 0.0000em 0.500em #999;		/* Firefox */
+	-webkit-box-shadow: 0.000em 0.0000em 0.500em #999; 	/* Chrome */
+	border: 0.1em solid #999;
+
+
+}
+
+#refresh {
+	font-family: Verdana;
+  	font-size: 0.815em;
+
+}
+
+#top_image {											/*Logo*/
+	margin-left:1.875em;
+	margin-bottom: 1em;
+}
+
+#top_navi {												/*Navileiste*/
+	font-family: Verdana;
+  	font-size: 0.815em;
+  	font-weight: bold;
+  	color: #4d4d4d;
+	text-align:center;
+	margin-bottom: 2em;
+	box-shadow: 0.000em 0.325em 0.225em #999;			/*Schlagschatten*/
+	-moz-box-shadow: 0.000em 0.325em 0.225em #999;		/* Firefox */
+	-webkit-box-shadow: 0.000em 0.325em 0.225em #999; 	/* Chrome */
+}
+
+#navigation_table {
+	width: 69em;
+}
+
+
+#navibutton_1 {											
+	/*background-image: url('images/excursion_04.gif');*/
+	background-color: #f3f3f3;
+	width: 6.813em;
+	height: 2.625em;
+	text-decoration: none;
+}
+
+#navibutton_2 {
+	/*background-image: url('images/excursion_05.gif');*/
+	background-color: #f3f3f3;
+	width: 6.125em;
+	height: 2.625em;
+	text-decoration: none;	
+}
+
+#navibutton_3 {
+	/*background-image: url('images/excursion_06.gif');*/
+	background-color: #f3f3f3;
+	width: 8.25em;
+	height: 2.625em;
+	text-decoration: none;
+}
+
+#navibutton_4 {
+	/*background-image: url('images/excursion_07.gif');*/
+	background-color: #f3f3f3;
+	width: 8.438em;
+	height: 2.625em;
+	text-decoration: none;
+}
+
+#navibutton_5 {
+	/*background-image: url('images/excursion_08.gif');*/
+	background-color: #f3f3f3;
+	width: 9.313em;
+	height: 2.625em;
+	text-decoration: none;
+}
+
+/*
+#navibutton_6 {
+	background-image: url('images/excursion_09.gif');
+	background-color: #f3f3f3;
+	width: 8.875em;
+	height: 2.625em;	
+}
+
+#navibutton_7 {
+	background-image: url('images/excursion_10.gif');
+	background-color: #f3f3f3;
+	width: 8.563em;
+	height: 2.625em;
+}
+*/
