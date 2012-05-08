@@ -2,6 +2,9 @@
   // Remember to copy files from the SDK's src/ directory to a
   // directory in your application on the server, such as php-sdk/
   require_once('library/src/facebook.php');
+  //Objekt der Klasse ServiceRoutines wird erzeugt
+  require_once 'serviceRoutines.php';
+  $serviceRoutines = new ServiceRoutines();
 
   $config = array(
     'appId' => '294040014004290',
@@ -34,12 +37,12 @@
 		echo "ID: " . $user_profile['id'];
 		echo "</br>";
 		//NAME
-		echo "Name: " . $user_profile['name'];
+		echo "Name: " . $serviceRoutines->convertSpecialSign($user_profile['name']);
 		echo "</br>";
 		//HOCHSCHULE/SCHULE
 		if ($user_profile['education']['0']['school']['name'] != "")
 		{
-			echo $user_profile['education']['0']['type'] . ": " . $user_profile['education']['0']['school']['name'];
+			echo $serviceRoutines->convertSpecialSign($user_profile['education']['0']['type']) . ": " . $serviceRoutines->convertSpecialSign($user_profile['education']['0']['school']['name']);
 			echo "</br>";
 		}
 		//GESCHLECHT
@@ -69,13 +72,13 @@
 		//STADT
 		if ($user_profile['hometown'] != "")
 		{
-			echo $user_profile['hometown'];
+			echo $serviceRoutines->convertSpecialSign($user_profile['hometown']);
 			echo "</br>";
 		}
 		//ARBEIT
 		if ($user_profile != "")
 		{
-			echo $user_profile['work'];
+			echo $serviceRoutines->convertSpecialSign($user_profile['work']);
 			echo "</br>";
 		}
 		
@@ -89,6 +92,7 @@
 		$friends = $facebook->api("/" . $user_id . "/friends", "GET"); 
 		$friendsData = $friends['data'];
 		$friendsSize = sizeof($friendsData);
+		//print '<pre>' . print_r($friendsData, true) . '</pre>'; 
 		//Anzahl Freunde
 		if ($friendsSize > 0)
 		{
@@ -98,7 +102,7 @@
 			for ($i = 0; $i < $friendsSize; $i++) 
 			{ 
 				$friend = $friendsData[$i]; 
-                echo $friend['name'];
+                echo $serviceRoutines->convertSpecialSign($friend['name']);
 				echo "</br>";
 			};
 		}
@@ -115,7 +119,7 @@
 			for ($i = 0; $i < $groupsSize; $i++) 
 			{ 
 				$group = $groupsData[$i]; 
-                echo $group['name'];
+                echo $serviceRoutines->convertSpecialSign($group['name']);
 				echo "</br>";
 			}; 
 		}
@@ -124,7 +128,7 @@
 		for ($i = 0; $i < sizeof($languages); $i++) 
 		{ 
            $language = $languages[$i]; 
-                     echo $language['name'];
+                     echo $serviceRoutines->convertSpecialSign($language['name']);
 					 echo "</br>";
         }; 
 		//SPIELE
@@ -136,7 +140,7 @@
 			for ($i = 0; $i < $gamesSize; $i++) 
 			{ 
 				$games = $games[$i]; 
-				echo $games['name'];
+				echo $serviceRoutines->convertSpecialSign($games['name']);
 				echo "</br>";
 			}; 
 		}
@@ -149,7 +153,7 @@
 			for ($i = 0; $i < $likesSize; $i++) 
 			{ 
 				$likes = $likes[$i]; 
-				echo $likes['name'];
+				echo $serviceRoutines->convertSpecialSign($likes['name']);
 				echo "</br>";
 			}; 
 		}
