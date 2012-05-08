@@ -1,0 +1,13 @@
+<?php
+	class ServiceRoutines
+	{
+		public function convertSpecialSign($value)
+		{
+			$strWss = str_replace("Ã¶", "ö", $value); //ö
+			$strWss = str_replace("Ã¼", "ü", $value); //ü
+			$strWss = str_replace("Ã¡", "&aacute", $value); //á
+			
+			return $strWss;
+		} 
+	}
+?>
