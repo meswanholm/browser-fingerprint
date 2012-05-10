@@ -419,6 +419,33 @@
 			return sizeof($eventsData);
 		}
 		
+		public function getUser_Checkins()
+		{//Checkins
+			$checkins = $this->facebook->api("/" . $this->user_id . "/checkins", "GET"); 
+			$checkinsData = $checkins['data'];
+			$checkinsSize = sizeof($checkinsData);
+			$allCheckins = array();
+
+			if ($checkinsSize > 0)
+			{		
+				for ($i = 0; $i < $checkinsSize; $i++) 
+				{ 
+					$checkin = $checkinsData[$i];
+					$allCheckins[] = $this->serviceRoutines->convertSpecialSign($checkin['name']); 
+				};
+			}
+			
+			return $allCheckins;
+		}
+		
+		public function getUser_NumberOfCheckins()
+		{//Anzahl Checkins
+			$checkins = $this->facebook->api("/" . $this->user_id . "/checkins", "GET"); 
+			$checkinsData = $checkins['data'];
+			
+			return sizeof($checkinsData);
+		}
+		
 		
 		public function __destruct()
 		{//SOLL ES DIE MÖGLICHKEIT GEBEN?
