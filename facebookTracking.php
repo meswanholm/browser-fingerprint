@@ -172,7 +172,7 @@
 		}
 		
 		public function getUser_Works()
-		{//Arbeiten
+		{//Arbeiten -> IN DOKU BEARBEITEN
 			$works = $this->user_profile['work'];
 			$worksSize = sizeof($works);
 			$allWorks = array();
@@ -190,16 +190,16 @@
 		}
 		
 		public function getUser_NumberOfWorks()
-		{//Anzahl Arbeiten
+		{//Anzahl Arbeiten -> IN DOKU
 			$works = $this->user_profile['work'];
 			
 			return sizeof($works);
 		}		
 		
 		public function getUser_Colleges()
-		{//Hochschule/Schule/Bildungseinrichtung
+		{//Hochschule/Schule/Bildungseinrichtung -> IN DOKU BEARBEITEN
 			$colleges = $this->user_profile['education'];
-			$collegesSize = sizeof($works);
+			$collegesSize = sizeof($colleges);
 			$allColleges = array();
 			
 			if ($collegesSize > 0)
@@ -207,7 +207,7 @@
 				for ($i = 0; $i < $collegesSize; $i++) 
 				{
 					$college = $colleges[$i]; 
-					$allColleges[] = $this->serviceRoutines->convertSpecialSign($college['type'] . $college['school']['name']);		
+					$allColleges[] = $this->serviceRoutines->convertSpecialSign($college['type'] . "|" . $college['school']['name']);		
 				};
 			}
 			
@@ -215,7 +215,7 @@
 		}
 		
 		public function getUser_NumberOfColleges()
-		{//Anzahl Hochschule/Schule/Bildungseinrichtung
+		{//Anzahl Hochschule/Schule/Bildungseinrichtung -> IN DOKU
 			$colleges = $this->user_profile['education'];
 			
 			return sizeof($colleges);
