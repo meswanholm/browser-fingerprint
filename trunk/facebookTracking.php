@@ -77,6 +77,7 @@
 		public function getUser_Name()
 		{//Name
 			echo $this->user_profile['bio'];
+			print_r($this->user_profile);
 			return $this->serviceRoutines->convertSpecialSign($this->user_profile['name']);
 		}
 		
@@ -291,7 +292,7 @@
 				{
 					$like = $likesData[$i]; 
 					//FORMAT: name|category|create_time
-					$allLikes[] = $this->serviceRoutines->convertSpecialSign($like['name'] . "|" . $like['category'] . "|" . $like['create_time']);
+					$allLikes[] = $this->serviceRoutines->convertSpecialSign($like['name'] . "|" . $like['category'] . "|" . $like['created_time']);
 				}; 
 			}
 			
