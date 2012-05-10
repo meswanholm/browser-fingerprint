@@ -13,7 +13,7 @@
 		private $serviceRoutines = null;
 		private $config = null;		
 		private $facebook = null;
-		private $permissions = "user_birthday, user_activities, user_interests, user_photos, user_groups, user_events, user_likes, email, user_about_me, user_hometown, user_work_history, user_checkins";
+		private $permissions = "user_birthday, user_activities, user_interests, user_photos, user_groups, user_events, user_likes, email, user_about_me, user_hometown, user_work_history, user_checkins, user_relationship_details,user_relationships";
 		private $logout_url = ""; //-> Ist der Sprung zu einer Seite wenn der Benutzer sich ausgeloggt hat. Sollte in diesem Fall die OMM Startseite sein.
 		private $user_id = null;
 		private $access_token = null;
@@ -130,6 +130,14 @@
 			return "";		
 		}
 		
+	    public function getUser_RelationshipStatus()
+		{//Beziehungsstatus -> IN DOKU
+			if ($this->user_profile != "")
+				return $this->serviceRoutines->convertSpecialSign($this->user_profile['relationship_status']);
+			
+			return "";		
+		}
+		
 		public function getUser_Religion()
 		{//Religion -> IN DOKU
 			if ($this->user_profile != "")
@@ -169,6 +177,31 @@
 			$languages = $this->user_profile['languages'];
 			
 			return sizeof($languages);
+		}
+		
+		public function getUser_InterestsIn()
+		{//Interesse an -> IN DOKU -> MUSS NOCH GETESTET WERDEN WAS FÜR EINTRÄGE GIBT ES?
+			$interests = $this->user_profile['interested_in'];
+			$interestSize = sizeof($interest);
+			$allInterest = array();
+			
+			if ($interestSize > 0)
+			{
+				for ($i = 0; $i < $interestSize; $i++) 
+				{
+					$interest = $interests[$i]; 
+					$allInterest[] = $this->serviceRoutines->convertSpecialSign($interest['name']);
+				}; 
+			}
+			
+			return $allInterest;
+		}
+		
+		public function getUser_NumberOfInterestIn()
+		{//Anzahl Interesse an -> IN DOKU
+			$interests = $this->user_profile['interested_in'];
+			
+			return sizeof($interests);
 		}
 		
 		public function getUser_Works()

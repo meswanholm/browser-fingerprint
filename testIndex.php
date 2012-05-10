@@ -36,6 +36,11 @@
 	print ("<b>Geschlecht: </b>" . $facebook2->getUser_Gender());
 	print ("</br>");
 	
+	//Beziehungsstatus
+	print ("</br>");
+	print ("<b>Beziehung: </b>" . $facebook2->getUser_RelationshipStatus());
+	print ("</br>");
+	
 	//Geburtstag
 	print ("</br>");
 	print ("<b>Geburtstag: </b>" . $facebook2->getUser_Birthday());
@@ -191,8 +196,20 @@
 	}
 	print ("<b>Anzahl Events: </b>" . $facebook2->getUser_NumberOfEvents());
 	
+	//Interessen an
+	$interests = $facebook2->getUser_InterestsIn();
+	print ("</br>");
+	print ("<b>Interests:</b>");
+	print ("</br>");
+	foreach ($interests as $interest)
+	{
+		print ($interest);
+		print ("</br>");
+	}
+	print ("<b>Anzahl Interesse: </b>" . $facebook2->getUser_NumberOfInterestIn());
+	
 		//User-Checkins
-	$events = $facebook2->getUser_Checkins();
+	/*$events = $facebook2->getUser_Checkins();
 	print ("</br>");
 	print ("<b>User-Checkins:</b>");
 	print ("</br>");
@@ -201,7 +218,7 @@
 		print ($event);
 		print ("</br>");
 	}
-	print ("<b>Anzahl User-Checkins: </b>" . $facebook2->getUser_NumberOfCheckins());
+	print ("<b>Anzahl User-Checkins: </b>" . $facebook2->getUser_NumberOfCheckins());*/
 	
 	
 	
