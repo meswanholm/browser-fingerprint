@@ -19,8 +19,16 @@
 	print ("</br>");
 	
 	//College
+	$colleges = $facebook2->getUser_Colleges();
 	print ("</br>");
-	print ("<b>" . $facebook2->getUser_CollegeKind() . ": </b>" . $facebook2->getUser_College());
+	print ("<b>Colleges:</b>");
+	print ("</br>");
+	foreach ($colleges as $college)
+	{
+		print ($college);
+		print ("</br>");
+	}
+	print ("<b>Anzahl Colleges: </b>" . $facebook2->getUser_NumberOfColleges());
 	print ("</br>");
 	
 	//Geschlecht
