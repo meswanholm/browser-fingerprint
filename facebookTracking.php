@@ -76,25 +76,7 @@
 		
 		public function getUser_Name()
 		{//Name
-			echo $this->user_profile['bio'];
-			print_r($this->user_profile);
 			return $this->serviceRoutines->convertSpecialSign($this->user_profile['name']);
-		}
-		
-		public function getUser_CollegeKind()
-		{//Hochschulart/Schulart/Bildungsart
-			if ($this->user_profile['education']['0']['type'] != "")
-				return $this->serviceRoutines->convertSpecialSign($this->user_profile['education']['0']['type']);
-			
-			return "";
-		}
-		
-		public function getUser_College()
-		{//Hochschule/Schule/Bildungseinrichtung
-			if ($this->user_profile['education']['0']['school']['name'] != "")
-				return $this->serviceRoutines->convertSpecialSign($this->user_profile['education']['0']['school']['name']);
-			
-			return "";
 		}
 			
 		public function getUser_Gender()
@@ -137,14 +119,6 @@
 			if ($this->user_profile['hometown'] != "")
 				return $this->serviceRoutines->convertSpecialSign($this->user_profile['hometown']);
 				
-			return "";
-		}
-		
-		public function getUser_Work()
-		{//Arbeit
-			if ($this->user_profile != "")
-				return $this->serviceRoutines->convertSpecialSign($this->user_profile['work']['0']['employer']['name']);
-			
 			return "";
 		}
 		
@@ -195,6 +169,56 @@
 			$languages = $this->user_profile['languages'];
 			
 			return sizeof($languages);
+		}
+		
+		public function getUser_Works()
+		{//Arbeiten
+			$works = $this->user_profile['work'];
+			$worksSize = sizeof($works);
+			$allWorks = array();
+			
+			if ($worksSize > 0)
+			{
+				for ($i = 0; $i < $worksSize; $i++) 
+				{
+					$work = $works[$i]; 
+					$allWorks[] = $this->serviceRoutines->convertSpecialSign($work['employer']['name']);		
+				};
+			}
+			
+			return $allWorks;
+		}
+		
+		public function getUser_NumberOfWorks()
+		{//Anzahl Arbeiten
+			$works = $this->user_profile['work'];
+			
+			return sizeof($works);
+		}		
+		
+		public function getUser_Colleges()
+		{//Hochschule/Schule/Bildungseinrichtung
+			$colleges = $this->user_profile['education'];
+			$collegesSize = sizeof($works);
+			$allColleges = array();
+			
+			if ($collegesSize > 0)
+			{
+				for ($i = 0; $i < $collegesSize; $i++) 
+				{
+					$college = $colleges[$i]; 
+					$allColleges[] = $this->serviceRoutines->convertSpecialSign($college['type'] . $college['school']['name']);		
+				};
+			}
+			
+			return $allColleges;
+		}
+		
+		public function getUser_NumberOfColleges()
+		{//Anzahl Hochschule/Schule/Bildungseinrichtung
+			$colleges = $this->user_profile['education'];
+			
+			return sizeof($colleges);
 		}
 		
 		public function getUser_Friends()
