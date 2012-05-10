@@ -44,8 +44,16 @@
 	print ("</br>");
 	
 	//Arbeit
+	$works = $facebook2->getUser_Works();
 	print ("</br>");
-	print ("<b>Arbeit: </b>" . $facebook2->getUser_Work());
+	print ("<b>Arbeiten:</b>");
+	print ("</br>");
+	foreach ($works as $work)
+	{
+		print ($work);
+		print ("</br>");
+	}
+	print ("<b>Anzahl Arbeiten: </b>" . $facebook2->getUser_NumberOfWorks());
 	print ("</br>");
 	
 	//Webseite
