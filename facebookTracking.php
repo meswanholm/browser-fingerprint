@@ -13,7 +13,7 @@
 		private $serviceRoutines = null;
 		private $config = null;		
 		private $facebook = null;
-		private $permissions = "user_birthday, user_activities, user_interests, user_photos, user_groups, user_events, user_likes, email, user_about_me, user_hometown, user_work_history";
+		private $permissions = "user_birthday, user_activities, user_interests, user_photos, user_groups, user_events, user_likes, email, user_about_me, user_hometown, user_work_history, user_checkins";
 		private $logout_url = ""; //-> Ist der Sprung zu einer Seite wenn der Benutzer sich ausgeloggt hat. Sollte in diesem Fall die OMM Startseite sein.
 		private $user_id = null;
 		private $access_token = null;
@@ -143,7 +143,7 @@
 		public function getUser_Work()
 		{//Arbeit
 			if ($this->user_profile != "")
-				return $this->serviceRoutines->convertSpecialSign($this->user_profile['work']);
+				return $this->serviceRoutines->convertSpecialSign($this->user_profile['work']['0']['employer']['name']);
 			
 			return "";
 		}
@@ -421,8 +421,9 @@
 		
 		public function getUser_Checkins()
 		{//Checkins
-			$checkins = $this->facebook->api("/" . $this->user_id . "/checkins", "GET"); 
-			$checkinsData = $checkins['data'];
+			$checkins = $this->facebook->api("/" . $this->user_id . "/checkins?access_token=" . $this->facebook->getAccessToken(), "POST"); 
+			$checkinsData = $checkins['data']['place']['0'];
+			var_dump($checkins);
 			$checkinsSize = sizeof($checkinsData);
 			$allCheckins = array();
 
@@ -441,7 +442,7 @@
 		public function getUser_NumberOfCheckins()
 		{//Anzahl Checkins
 			$checkins = $this->facebook->api("/" . $this->user_id . "/checkins", "GET"); 
-			$checkinsData = $checkins['data'];
+			$checkinsData = $checkins['data']['place'];
 			
 			return sizeof($checkinsData);
 		}
