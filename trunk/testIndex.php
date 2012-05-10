@@ -175,6 +175,18 @@
 	}
 	print ("<b>Anzahl Events: </b>" . $facebook2->getUser_NumberOfEvents());
 	
+		//User-Checkins
+	$events = $facebook2->getUser_Checkins();
+	print ("</br>");
+	print ("<b>User-Checkins:</b>");
+	print ("</br>");
+	foreach ($events as $event)
+	{
+		print ($event);
+		print ("</br>");
+	}
+	print ("<b>Anzahl User-Checkins: </b>" . $facebook2->getUser_NumberOfCheckins());
+	
 	
 	
 	print ("</body>");
