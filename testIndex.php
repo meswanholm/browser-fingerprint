@@ -208,6 +208,10 @@
 	}
 	print ("<b>Anzahl Interesse: </b>" . $facebook2->getUser_NumberOfInterestIn());
 	
+	
+	print ("<b>Anzahl Interesse: </b>" . $facebook2->getUser_Checkins_FQL());
+	
+	
 		//User-Checkins
 	/*$events = $facebook2->getUser_Checkins();
 	print ("</br>");
