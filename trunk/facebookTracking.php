@@ -507,12 +507,12 @@
 		public function getUser_Checkins_FQL()
 		{//Checkins
 		 // Testlauf
-		  /*$fql_query_url = 'https://graph.facebook.com/'
+		  $fql_query_url = 'https://graph.facebook.com/'
 			. 'fql?q=SELECT name FROM place WHERE page_id IN (SELECT checkin_id, author_uid, page_id, app_id, post_id, tagged_uids, message FROM checkin WHERE author_uid= me())'
-			. '&access_token=' . $access_token;
-		  $return=mysql_query(fql_query_url);*/
+			. '&access_token=' .$this->facebook->getAccessToken();
+		  
 		  // Run fql query
-		  $fql_query_url = 'https://graph.facebook.com/fql?q=SELECT page_id FROM checkin WHERE author_uid= me()&access_token='.$this->facebook->getAccessToken();
+		  //$fql_query_url = 'https://graph.facebook.com/fql?q=SELECT page_id FROM checkin WHERE author_uid= me()&access_token='.$this->facebook->getAccessToken();
 		  $fql_query_result = file_get_contents($fql_query_url);
 		  $fql_query_obj = json_decode($fql_query_result, true);
 			
