@@ -226,7 +226,7 @@
 	
 	//Biografie
 	print ("</br>");
-	print ("<b>Biografie: </b>" . $facebook2->getUser_Biographie()());
+	print ("<b>Biografie: </b>" . $facebook2->getUser_Biographie());
 	print ("</br>");	
 	
 	
