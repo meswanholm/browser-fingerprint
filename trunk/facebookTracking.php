@@ -53,7 +53,7 @@
 				{
 					$this->access_token = $this->facebook->getAccessToken();
 					//Benutzerinformationen
-					$this->user_profile = $this->facebook->api("/" . $this->user_id, "GET"); //NUR DIE FELDER HOLEN DIE WIR BRAUCHEN!
+					$this->user_profile = $this->facebook->api("/" . $this->user_id, "GET");
 				}	  
 				catch(FacebookApiException $e) 
 				{
@@ -148,6 +148,14 @@
 			return "";
 		}
 		
+		public function getUser_Biographie()
+		{//Biografie
+			if ($this->user_profile != "")
+				return $this->serviceRoutines->convertSpecialSign($this->user_profile['bio']);
+			
+			return "";
+		}
+		
 		public function getUser_Website()
 		{//Webseite
 			if ($this->user_profile != "")
@@ -200,7 +208,7 @@
 		}
 		
 		public function getUser_NumberOfInterestIn()
-		{//Anzahl Interesse an
+		{//Anzahl Interesse an -> MUSS NOCH GETESTET WERDEN WAS FÜR EINTRÄGE GIBT ES?
 			$interests = $this->user_profile['interested_in'];
 			
 			return sizeof($interests);
