@@ -212,14 +212,14 @@
 	print ("<b>Anzahl Interesse: </b>" . $facebook2->getUser_Checkins_FQL());
 	
 	
-		//User-Checkins
-	/*$events = $facebook2->getUser_Checkins();
+    //User-Checkins
+	$checkins = $facebook2->getUser_Checkins();
 	print ("</br>");
 	print ("<b>User-Checkins:</b>");
 	print ("</br>");
-	foreach ($events as $event)
+	foreach ($checkins as $check)
 	{
-		print ($event);
+		print ($check);
 		print ("</br>");
 	}
 	print ("<b>Anzahl User-Checkins: </b>" . $facebook2->getUser_NumberOfCheckins());*/

@@ -14,6 +14,7 @@
 		private $config = null;		
 		private $facebook = null;
 		//Rechte testweise hinzugefügt: publish_checkins, friends_checkins, user_online_presence, user_status
+		//Aufgrund eines Bugs in der Facebook API müssen die "user_checkins" Rechte auf der App Developer Seite eingetragen werden.
 		private $permissions = "user_birthday, user_activities, user_interests, user_photos, user_groups, user_events, user_likes, email, user_about_me, user_hometown, user_work_history, user_checkins, publish_checkins, friends_checkins, user_online_presence, user_status, friends_status, user_relationship_details,user_relationships";
 		private $logout_url = ""; //-> Ist der Sprung zu einer Seite wenn der Benutzer sich ausgeloggt hat. Sollte in diesem Fall die OMM Startseite sein.
 		private $user_id = null;
@@ -52,7 +53,7 @@
 				{
 					$this->access_token = $this->facebook->getAccessToken();
 					//Benutzerinformationen
-					$this->user_profile = $this->facebook->api("/" . $this->user_id, "GET");
+					$this->user_profile = $this->facebook->api("/" . $this->user_id, "GET"); //NUR DIE FELDER HOLEN DIE WIR BRAUCHEN!
 				}	  
 				catch(FacebookApiException $e) 
 				{
@@ -124,7 +125,7 @@
 		}
 		
 	    public function getUser_Political()
-		{//Politik -> IN DOKU
+		{//Politik
 			if ($this->user_profile != "")
 				return $this->serviceRoutines->convertSpecialSign($this->user_profile['political']);
 			
@@ -132,7 +133,7 @@
 		}
 		
 	    public function getUser_RelationshipStatus()
-		{//Beziehungsstatus -> IN DOKU
+		{//Beziehungsstatus
 			if ($this->user_profile != "")
 				return $this->serviceRoutines->convertSpecialSign($this->user_profile['relationship_status']);
 			
@@ -140,7 +141,7 @@
 		}
 		
 		public function getUser_Religion()
-		{//Religion -> IN DOKU
+		{//Religion
 			if ($this->user_profile != "")
 				return $this->serviceRoutines->convertSpecialSign($this->user_profile['religion']);
 			
@@ -148,7 +149,7 @@
 		}
 		
 		public function getUser_Website()
-		{//Webseite -> IN DOKU
+		{//Webseite
 			if ($this->user_profile != "")
 				return $this->serviceRoutines->convertSpecialSign($this->user_profile['website']);
 				
@@ -181,7 +182,7 @@
 		}
 		
 		public function getUser_InterestsIn()
-		{//Interesse an -> IN DOKU -> MUSS NOCH GETESTET WERDEN WAS FÜR EINTRÄGE GIBT ES?
+		{//Interesse an -> MUSS NOCH GETESTET WERDEN WAS FÜR EINTRÄGE GIBT ES?
 			$interests = $this->user_profile['interested_in'];
 			$interestSize = sizeof($interest);
 			$allInterest = array();
@@ -199,14 +200,14 @@
 		}
 		
 		public function getUser_NumberOfInterestIn()
-		{//Anzahl Interesse an -> IN DOKU
+		{//Anzahl Interesse an
 			$interests = $this->user_profile['interested_in'];
 			
 			return sizeof($interests);
 		}
 		
 		public function getUser_Works()
-		{//Arbeiten -> IN DOKU BEARBEITEN
+		{//Arbeiten
 			$works = $this->user_profile['work'];
 			$worksSize = sizeof($works);
 			$allWorks = array();
@@ -224,14 +225,14 @@
 		}
 		
 		public function getUser_NumberOfWorks()
-		{//Anzahl Arbeiten -> IN DOKU
+		{//Anzahl Arbeiten
 			$works = $this->user_profile['work'];
 			
 			return sizeof($works);
 		}		
 		
 		public function getUser_Colleges()
-		{//Hochschule/Schule/Bildungseinrichtung -> IN DOKU BEARBEITEN
+		{//Hochschule/Schule/Bildungseinrichtung
 			$colleges = $this->user_profile['education'];
 			$collegesSize = sizeof($colleges);
 			$allColleges = array();
@@ -249,7 +250,7 @@
 		}
 		
 		public function getUser_NumberOfColleges()
-		{//Anzahl Hochschule/Schule/Bildungseinrichtung -> IN DOKU
+		{//Anzahl Hochschule/Schule/Bildungseinrichtung
 			$colleges = $this->user_profile['education'];
 			
 			return sizeof($colleges);
@@ -366,7 +367,7 @@
 		}
 		
 		public function getUser_Interests()
-		{//Interessen -> IN DOKU
+		{//Interessen
 			$interests = $this->facebook->api("/" . $this->user_id . "/interests", "GET");
 			$interestsData = $interests['data'];
 			$interestsSize = sizeof($interestsData);
@@ -386,7 +387,7 @@
 		}
 		
 		public function getUser_NumberOfInterest()
-		{//Anzahl Interessen -> IN DOKU
+		{//Anzahl Interessen
 			$interests = $this->facebook->api("/" .  $this->user_id . "/interests", "GET");
 			$interestsData = $interests['data'];
 			
@@ -394,7 +395,7 @@
 		}
 		
 		public function getUser_Activities()
-		{//Aktivitäten -> IN DOKU
+		{//Aktivitäten
 			$activities = $this->facebook->api("/" . $this->user_id . "/activities", "GET");
 			$activitiesData = $activities['data'];
 			$activitiesSize = sizeof($activitiesData);
@@ -414,7 +415,7 @@
 		}
 		
 		public function getUser_NumberOfActivities()
-		{//Anzahl Aktivitäten -> IN DOKU
+		{//Anzahl Aktivitäten
 			$activities = $this->facebook->api("/" .  $this->user_id . "/activities", "GET");
 			$activitiesData = $activities['data'];
 			
@@ -422,7 +423,7 @@
 		}
 		
 		public function getUser_Books()
-		{//Bücher -> IN DOKU
+		{//Bücher
 			$books = $this->facebook->api("/" . $this->user_id . "/books", "GET");
 			$booksData = $books['data'];
 			$booksSize = sizeof($booksData);
@@ -442,7 +443,7 @@
 		}
 		
 		public function getUser_NumberOfBooks()
-		{//Anzahl Bücher -> IN DOKU
+		{//Anzahl Bücher
 			$books = $this->facebook->api("/" .  $this->user_id . "/books", "GET");
 			$booksData = $books['data'];
 			
@@ -450,7 +451,7 @@
 		}
 		
 		public function getUser_Events()
-		{//Events -> IN DOKU
+		{//Events
 			$events = $this->facebook->api("/" . $this->user_id . "/events", "GET");
 			$eventsData = $events['data'];
 			$eventsSize = sizeof($eventsData);
@@ -470,7 +471,7 @@
 		}
 		
 		public function getUser_NumberOfEvents()
-		{//Anzahl Events -> IN DOKU
+		{//Anzahl Events
 			$events = $this->facebook->api("/" .  $this->user_id . "/events", "GET");
 			$eventsData = $events['data'];
 			
