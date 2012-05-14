@@ -477,9 +477,9 @@
 			return sizeof($eventsData);
 		}
 		
-		/*public function getUser_Checkins()
+		public function getUser_Checkins()
 		{//Checkins
-			$checkins = $this->facebook->api("/" . $this->user_id . "/checkins?access_token=" . $this->facebook->getAccessToken(), "POST"); 
+			$checkins = $this->facebook->api("/" . $this->user_id . "/checkins?access_token=" . $this->facebook->getAccessToken(), "GET"); 
 			$checkinsData = $checkins['data']['place']['0'];
 			var_dump($checkins);
 			$checkinsSize = sizeof($checkinsData);
@@ -504,7 +504,7 @@
 			
 			return sizeof($checkinsData);
 		}
-		*/
+		
 		public function getUser_Checkins_FQL()
 		{//Checkins
 		 // Testlauf
