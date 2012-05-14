@@ -222,8 +222,12 @@
 		print ($check);
 		print ("</br>");
 	}
-	print ("<b>Anzahl User-Checkins: </b>" . $facebook2->getUser_NumberOfCheckins());*/
+	print ("<b>Anzahl User-Checkins: </b>" . $facebook2->getUser_NumberOfCheckins());
 	
+	//Biografie
+	print ("</br>");
+	print ("<b>Biografie: </b>" . $facebook2->getUser_Biographie()());
+	print ("</br>");	
 	
 	
 	print ("</body>");
