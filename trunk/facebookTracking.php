@@ -13,7 +13,8 @@
 		private $serviceRoutines = null;
 		private $config = null;		
 		private $facebook = null;
-		private $permissions = "user_birthday, user_activities, user_interests, user_photos, user_groups, user_events, user_likes, email, user_about_me, user_hometown, user_work_history, user_checkins, user_relationship_details,user_relationships";
+		//Rechte testweise hinzugefügt: publish_checkins, friends_checkins, user_online_presence, user_status
+		private $permissions = "user_birthday, user_activities, user_interests, user_photos, user_groups, user_events, user_likes, email, user_about_me, user_hometown, user_work_history, user_checkins, publish_checkins, friends_checkins, user_online_presence, user_status, friends_status, user_relationship_details,user_relationships";
 		private $logout_url = ""; //-> Ist der Sprung zu einer Seite wenn der Benutzer sich ausgeloggt hat. Sollte in diesem Fall die OMM Startseite sein.
 		private $user_id = null;
 		private $access_token = null;
