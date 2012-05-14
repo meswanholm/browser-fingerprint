@@ -512,7 +512,6 @@
 		  $fql_query_checkins_place = 'SELECT+name+FROM+place+WHERE+page_id+IN+(SELECT+page_id+FROM+#fql_query_checkins_all)';
 		  $fql_test = 'SELECT+name+FROM+user+WHERE+uid+=me()';
 		  $fql_query_url = 'https://graph.facebook.com/fql?q='.$fql_query_checkins_all.'&access_token='.$this->facebook->getAccessToken();
-		  
 		  $fql_query_result = file_get_contents($fql_query_url);
 		  $fql_query_obj = json_decode($fql_query_result, true);
 			
@@ -520,10 +519,10 @@
 		  echo '<pre>';
 		  print_r("query results:");
 		  print_r($fql_query_obj);
-
 		  echo '</pre>';
 		  }
 		
+
 		
 		
 		public function __destruct()
