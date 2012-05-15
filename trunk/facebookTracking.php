@@ -369,7 +369,7 @@
 				{ 
 					$game = $gamesData[$i]; 
 					//FORMAT: name|category|created_time
-					$allGames[] = $this->serviceRoutines->convertSpecialSign($game['name'] . "|" . $game['category'] . "|" . $game['created_time']);
+					$allGames[] = $this->serviceRoutines->convertSpecialSign($game['name'] . "|" . $game['category'] . "|" . $game['created_time']); // 
 				}; 
 			}
 			
@@ -552,7 +552,7 @@
 				$this->user_checkins = $this->facebook->api("/" . $this->user_id . "/checkins?access_token=" . $this->facebook->getAccessToken(), "GET"); //ENTSPRECHENDE FELDER RAUSHOLEN
 			
 			$checkinsData = $this->user_checkins['data']['place']['0'];
-			var_dump($checkins);
+			var_dump($this->user_checkins);
 			$checkinsSize = sizeof($checkinsData);
 			$allCheckins = array();
 
