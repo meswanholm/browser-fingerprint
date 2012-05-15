@@ -16,7 +16,7 @@
 			$strWss = str_replace("Ã¼", "&uuml", $strWss); //ü
 			$strWss = str_replace("Ã¡", "&aacute", $strWss); //á
 			$strWss = str_replace("ÃŸ", "&szlig", $strWss); //ß
-			$strWss = str_replace("Ã¤", "&Auml", $strWss); //Ä
+			$strWss = str_replace("Ã¤", "&auml", $strWss); //Ä
 			$strWss = str_replace("Ä", "&auml", $strWss); //ä
 			$strWss = str_replace("Ã–", "&Ouml", $strWss); //Ö
 			$strWss = str_replace("Ãœ", "&Uuml", $strWss); //Ü
