@@ -23,6 +23,34 @@
 		private $login_url = null;
 		//Benutzerinformationen
 		private $user_profile = null;
+		private $user_fields = "id,name,gender,birthday,email,hometown,political,relationship_status,religion,bio,website,languages,interested_in,work,education";
+		//Freunde
+		private $user_friends = null;
+		private $user_friendsFields = "name";
+		//Gruppen
+		private $user_groups = null;
+		private $user_groupsFields = "name";
+		//Games
+		private $user_games = null;
+		private $user_gamesFields = "name,category,created_time"; //BUG behauptet Feld sei nicht da, hole ich mir alle Alle Feld ist das Feld "created_time" dabei.
+		//Likes
+		private $user_likes = null;
+		private $user_likesFields = "name,category,create_time"; //GLEICH Games
+		//Interessen
+		private $user_interest = null;
+		private $user_interestFields = "name,category,create_time"; //GLEICH Games
+		//Aktivitäten
+		private $user_activities = null;
+		private $user_activitiesFields = "name,category,create_time"; //GLEICH Games
+		//Bücher
+		private $user_books = null;
+		private $user_booksFields = "name,category,create_time"; //GLEICH Games
+		//Veranstaltungen
+		private $user_events = null;
+		private $user_eventsFields = "name,start_time,end_time,location,rsvp_status"; //GLEICH Games
+		//Checkins
+		private $user_checkins = null;
+		private $user_checkinsFields = "";
 		
 		
 		public function __construct($pFacebook_PHP, $pServiceRoutines_PHP, $pLogoutUrl, $pAppID, $pAppSecret)
@@ -53,7 +81,7 @@
 				{
 					$this->access_token = $this->facebook->getAccessToken();
 					//Benutzerinformationen
-					$this->user_profile = $this->facebook->api("/" . $this->user_id, "GET");
+					$this->user_profile = $this->facebook->api("/" . $this->user_id . "?fields=" . $this->user_fields, "GET");
 				}	  
 				catch(FacebookApiException $e) 
 				{
@@ -126,7 +154,7 @@
 		
 	    public function getUser_Political()
 		{//Politik
-			if ($this->user_profile != "")
+			if ($this->user_profile['political'] != "")
 				return $this->serviceRoutines->convertSpecialSign($this->user_profile['political']);
 			
 			return "";		
@@ -134,7 +162,7 @@
 		
 	    public function getUser_RelationshipStatus()
 		{//Beziehungsstatus
-			if ($this->user_profile != "")
+			if ($this->user_profile['relationship_status'] != "")
 				return $this->serviceRoutines->convertSpecialSign($this->user_profile['relationship_status']);
 			
 			return "";		
@@ -142,7 +170,7 @@
 		
 		public function getUser_Religion()
 		{//Religion
-			if ($this->user_profile != "")
+			if ($this->user_profile['religion'] != "")
 				return $this->serviceRoutines->convertSpecialSign($this->user_profile['religion']);
 			
 			return "";
@@ -150,7 +178,7 @@
 		
 		public function getUser_Biographie()
 		{//Biografie
-			if ($this->user_profile != "")
+			if ($this->user_profile['bio'] != "")
 				return $this->serviceRoutines->convertSpecialSign($this->user_profile['bio']);
 			
 			return "";
@@ -158,7 +186,7 @@
 		
 		public function getUser_Website()
 		{//Webseite
-			if ($this->user_profile != "")
+			if ($this->user_profile['website'] != "")
 				return $this->serviceRoutines->convertSpecialSign($this->user_profile['website']);
 				
 			return "";
@@ -266,8 +294,10 @@
 		
 		public function getUser_Friends()
 		{//Freunde
-			$friends = $this->facebook->api("/" . $this->user_id . "/friends", "GET"); 
-			$friendsData = $friends['data'];
+			if ($this->user_friends == null)
+				$this->user_friends = $this->facebook->api("/" . $this->user_id . "/friends?fields=" . $this->user_friendsFields, "GET"); 
+			
+			$friendsData = $this->user_friends['data'];
 			$friendsSize = sizeof($friendsData);
 			$allFriends = array();
 
@@ -285,16 +315,20 @@
 		
 		public function getUser_NumberOfFriends()
 		{//Anzahl Freunde
-			$friends = $this->facebook->api("/" . $this->user_id . "/friends", "GET"); 
-			$friendsData = $friends['data'];
+			if ($this->user_friends == null)
+				$this->user_friends = $this->facebook->api("/" . $this->user_id . "/friends?fields=" . $this->user_friendsFields, "GET"); 
+			
+			$friendsData = $this->user_friends['data'];
 			
 			return sizeof($friendsData);
 		}
 		
 		public function getUser_Groups()
 		{//Gruppen
-			$groups = $this->facebook->api("/" . $this->user_id . "/groups", "GET"); 
-			$groupsData = $groups['data'];
+			if ($this->user_groups == null)
+				$this->user_groups = $this->facebook->api("/" . $this->user_id . "/groups?fields=" . $this->user_groupsFields, "GET"); 
+			
+			$groupsData = $this->user_groups['data'];
 			$groupsSize = sizeof($groupsData);
 			$allGroups = array();
 			
@@ -312,16 +346,20 @@
 		
 		public function getUser_NumberOfGroups()
 		{//Anzahl Gruppen
-			$groups = $this->facebook->api("/" . $this->user_id . "/groups", "GET"); 
-			$groupsData = $groups['data'];
+			if ($this->user_groups == null)
+				$this->user_groups = $this->facebook->api("/" . $this->user_id . "/groups?fields=" . $this->user_groupsFields, "GET"); 
+			
+			$groupsData = $this->user_groups['data'];
 			
 			return sizeof($groupsData);
 		}
 		
 		public function getUser_Games()
 		{//Spiele
-			$games = $this->facebook->api("/" .  $this->user_id . "/games", "GET");
-			$gamesData = $games['data'];
+			if ($this->user_games == null)
+				$this->user_games = $this->facebook->api("/" .  $this->user_id . "/games", "GET");
+			
+			$gamesData = $this->user_games['data'];
 			$gamesSize = sizeof($gamesData);
 			$allGames = array();
 		
@@ -340,16 +378,20 @@
 		
 		public function getUser_NumberOfGames()
 		{//Anzahl Spiele
-			$games = $this->facebook->api("/" .  $this->user_id . "/games", "GET");
-			$gamesData = $games['data'];
+			if ($this->user_games == null)
+				$this->user_games = $this->facebook->api("/" .  $this->user_id . "/games", "GET");
+			
+			$gamesData = $this->user_games['data'];
 			
 			return sizeof($gamesData);
 		}
 		
 		public function getUser_Likes()
 		{//Likes
-			$likes = $this->facebook->api("/" .  $this->user_id . "/likes", "GET");
-			$likesData = $likes['data'];
+			if ($this->user_likes == null)
+				$this->user_likes = $this->facebook->api("/" .  $this->user_id . "/likes", "GET");
+				
+			$likesData = $this->user_likes['data'];
 			$likesSize = sizeof($likesData);
 			$allLikes = array();
 			
@@ -359,7 +401,7 @@
 				{
 					$like = $likesData[$i]; 
 					//FORMAT: name|category|create_time
-					$allLikes[] = $this->serviceRoutines->convertSpecialSign($like['name'] . "|" . $like['category'] . "|" . $like['created_time']);
+					$allLikes[] = $this->serviceRoutines->convertSpecialSign($like['name'] . "|" . $like['category'] . "|" . $like['create_time']);
 				}; 
 			}
 			
@@ -368,16 +410,20 @@
 		
 		public function getUser_NumberOfLikes()
 		{//Anzahl Likes
-			$likes = $this->facebook->api("/" .  $this->user_id . "/likes", "GET");
-			$likesData = $likes['data'];
+			if ($this->user_likes == null)
+				$this->user_likes = $this->facebook->api("/" .  $this->user_id . "/likes?fields=" . $this->user_likesFields, "GET");
+				
+			$likesData = $this->user_likes['data'];
 			
 			return sizeof($likesData);
 		}
 		
 		public function getUser_Interests()
 		{//Interessen
-			$interests = $this->facebook->api("/" . $this->user_id . "/interests", "GET");
-			$interestsData = $interests['data'];
+			if ($this->user_interest == null)
+				$this->user_interest = $this->facebook->api("/" . $this->user_id . "/interests", "GET");
+				
+			$interestsData = $this->user_interest['data'];
 			$interestsSize = sizeof($interestsData);
 			$allInterests = array();
 			
@@ -396,16 +442,20 @@
 		
 		public function getUser_NumberOfInterest()
 		{//Anzahl Interessen
-			$interests = $this->facebook->api("/" .  $this->user_id . "/interests", "GET");
-			$interestsData = $interests['data'];
+			if ($this->user_interest == null)
+				$this->user_interest = $this->facebook->api("/" . $this->user_id . "/interests", "GET");
+				
+			$interestsData = $this->user_interest['data'];
 			
 			return sizeof($interestsData);
 		}
 		
 		public function getUser_Activities()
 		{//Aktivitäten
-			$activities = $this->facebook->api("/" . $this->user_id . "/activities", "GET");
-			$activitiesData = $activities['data'];
+			if ($this->user_activities == null)
+				$this->user_activities = $this->facebook->api("/" . $this->user_id . "/activities", "GET");
+			
+			$activitiesData = $this->user_activities['data'];
 			$activitiesSize = sizeof($activitiesData);
 			$allActivities = array();
 			
@@ -424,16 +474,20 @@
 		
 		public function getUser_NumberOfActivities()
 		{//Anzahl Aktivitäten
-			$activities = $this->facebook->api("/" .  $this->user_id . "/activities", "GET");
-			$activitiesData = $activities['data'];
+			if ($this->user_activities == null)
+				$this->user_activities = $this->facebook->api("/" . $this->user_id . "/activities", "GET");
+			
+			$activitiesData = $this->user_activities['data'];
 			
 			return sizeof($activitiesData);
 		}
 		
 		public function getUser_Books()
 		{//Bücher
-			$books = $this->facebook->api("/" . $this->user_id . "/books", "GET");
-			$booksData = $books['data'];
+			if ($this->user_books == null)
+				$this->user_books = $this->facebook->api("/" . $this->user_id . "/books", "GET");
+			
+			$booksData = $this->user_books['data'];
 			$booksSize = sizeof($booksData);
 			$allBooks = array();
 			
@@ -452,16 +506,20 @@
 		
 		public function getUser_NumberOfBooks()
 		{//Anzahl Bücher
-			$books = $this->facebook->api("/" .  $this->user_id . "/books", "GET");
-			$booksData = $books['data'];
+			if ($this->user_books == null)
+				$this->user_books = $this->facebook->api("/" . $this->user_id . "/books", "GET");
+			
+			$booksData = $this->user_books['data'];
 			
 			return sizeof($booksData);
 		}
 		
 		public function getUser_Events()
 		{//Events
-			$events = $this->facebook->api("/" . $this->user_id . "/events", "GET");
-			$eventsData = $events['data'];
+			if ($this->user_events == null)
+				$this->user_events = $this->facebook->api("/" . $this->user_id . "/events", "GET");
+				
+			$eventsData = $this->user_events['data'];
 			$eventsSize = sizeof($eventsData);
 			$allEvents = array();
 			
@@ -480,16 +538,20 @@
 		
 		public function getUser_NumberOfEvents()
 		{//Anzahl Events
-			$events = $this->facebook->api("/" .  $this->user_id . "/events", "GET");
-			$eventsData = $events['data'];
+			if ($this->user_events == null)
+				$this->user_events = $this->facebook->api("/" . $this->user_id . "/events", "GET");
+				
+			$eventsData = $this->user_events['data'];
 			
 			return sizeof($eventsData);
 		}
 		
 		public function getUser_Checkins()
 		{//Checkins
-			$checkins = $this->facebook->api("/" . $this->user_id . "/checkins?access_token=" . $this->facebook->getAccessToken(), "GET"); 
-			$checkinsData = $checkins['data']['place']['0'];
+			if ($this->user_checkins == null);
+				$this->user_checkins = $this->facebook->api("/" . $this->user_id . "/checkins?access_token=" . $this->facebook->getAccessToken(), "GET"); //ENTSPRECHENDE FELDER RAUSHOLEN
+			
+			$checkinsData = $this->user_checkins['data']['place']['0'];
 			var_dump($checkins);
 			$checkinsSize = sizeof($checkinsData);
 			$allCheckins = array();
@@ -508,8 +570,10 @@
 		
 		public function getUser_NumberOfCheckins()
 		{//Anzahl Checkins
-			$checkins = $this->facebook->api("/" . $this->user_id . "/checkins", "GET"); 
-			$checkinsData = $checkins['data']['place'];
+			if ($this->user_checkins == null);
+				$this->user_checkins = $this->facebook->api("/" . $this->user_id . "/checkins?access_token=" . $this->facebook->getAccessToken(), "GET"); //ENTSPRECHENDE FELDER RAUSHOLEN
+				
+			$checkinsData = $this->user_checkins['data']['place'];
 			
 			return sizeof($checkinsData);
 		}
