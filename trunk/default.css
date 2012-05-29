@@ -1,0 +1,66 @@
+﻿/*********************************************************************************/
+/*			                  Source History									 */
+/*-------------------------------------------------------------------------------*/
+/*2012-05-29|DW: Erste Version													 */
+/*																				 */
+/*********************************************************************************/
+
+
+body {
+	background:url("images/board.png");	
+	margin:2em 4em 2em 4em;
+
+}	
+
+#top {
+	height:228px;
+	width:900px;
+	background:url("images/1.png");
+	font-size: 0.750em;				
+	font-family: verdana;
+	text-align:right;
+	color: #ffffff;								/* Schriftfarbe */
+}
+
+
+.content {
+	background:url("images/2.png");
+	background-size: 900px 100%;
+	background-repeat: no-repeat;
+	min-height:798px;
+	padding: 0em 55em 0em 2em;		/* innere Abstände oben/rechts/unten/links */
+	font-size: 0.815em;				
+	font-family: verdana;
+	color: #4d4d4d;								/* Schriftfarbe */
+}
+
+#bottom {
+	height:248px;
+	width:900px;
+	background:url("images/3.png");
+	font-size: 0.750em;				
+	font-family: verdana;
+	text-align:right;
+	color: #ffffff;										/* Schriftfarbe */
+}
+
+
+h1 {
+  font-family: Verdana;
+  font-size: 1em;
+  color: #4d4d4d;	
+  text-decoration: underline;
+}
+
+h2 {
+  font-size: 1em;
+  font-family: Verdana;
+  color: #008db5;	
+}
+	
+a {
+  font-family: Verdana;
+  font-size: 0.815em;
+  font-weight: bold;
+  color: #4d4d4d;
+}
