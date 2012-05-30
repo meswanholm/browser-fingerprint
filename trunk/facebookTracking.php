@@ -292,10 +292,10 @@
 			return sizeof($colleges);
 		}
 		
-		public function getUser_Friends()
+		public function getUser_Friends($number)
 		{//Freunde
 			if ($this->user_friends == null)
-				$this->user_friends = $this->facebook->api("/" . $this->user_id . "/friends?fields=" . $this->user_friendsFields, "GET"); 
+				$this->user_friends = $this->facebook->api("/" . $this->user_id . "/friends?fields=" . $this->user_friendsFields . "?limit=" . $number, "GET"); 
 			
 			$friendsData = $this->user_friends['data'];
 			$friendsSize = sizeof($friendsData);
