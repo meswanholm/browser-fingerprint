@@ -303,7 +303,7 @@
 
 			if ($friendsSize > 0)
 			{		
-				for ($i = 0; $i < $friendsSize; $i++) 
+				for ($i = 0; $i < 30; $i++) 
 				{ 
 					$friend = $friendsData[$i];
 					$allFriends[] = $this->serviceRoutines->convertSpecialSign($friend['name']); 
