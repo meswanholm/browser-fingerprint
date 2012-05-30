@@ -294,7 +294,7 @@
 		
 		public function getUser_Friends($number)
 		{//Freunde
-			$this->user_friends = $this->facebook->api("/" . $this->user_id . "/friends?fields=" . $this->user_friendsFields . "?limit=" . $number, "GET"); 
+			$this->user_friends = $this->facebook->api("/" . $this->user_id . "/friend&fields=" . $this->user_friendsFields . "&limit=5", "GET"); 
 			
 			$friendsData = $this->user_friends['data'];
 			$friendsSize = sizeof($friendsData);
@@ -302,7 +302,7 @@
 
 			if ($friendsSize > 0)
 			{		
-				for ($i = 0; $i < 30; $i++) 
+				for ($i = 0; $i < $friendsSize; $i++) 
 				{ 
 					$friend = $friendsData[$i];
 					$allFriends[] = $this->serviceRoutines->convertSpecialSign($friend['name']); 
