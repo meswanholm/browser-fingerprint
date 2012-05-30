@@ -1,7 +1,7 @@
 <!--********************************SOURCE CODE HISTORY**********************************!>
 <!Coypright Till Klassen, Timo Friepes, Daniel Willinger								 !>
-<!																					     !>
-<!																						 !>
+<!---------------------------------------------------------------------------------------!>
+<!2012-05-30: Limitation of datasets    												 !>
 <!                        																 !>
 <!																					     !>
 <***************************************************************************************-->
@@ -29,6 +29,7 @@
 		private $user_friendsFields = "name";
 		//Gruppen
 		private $user_groups = null;
+		private $user_groupsNum = null;
 		private $user_groupsFields = "name";
 		//Games
 		private $user_games = null;
@@ -217,10 +218,15 @@
 			return sizeof($languages);
 		}
 		
-		public function getUser_InterestsIn()
+		public function getUser_InterestsIn($number)
 		{//Interesse an -> MUSS NOCH GETESTET WERDEN WAS FÜR EINTRÄGE GIBT ES?
 			$interests = $this->user_profile['interested_in'];
-			$interestSize = sizeof($interest);
+			
+			if ($number > 0)
+				$interestSize = $number;
+			else
+				$interestSize = sizeof($interests);
+				
 			$allInterest = array();
 			
 			if ($interestSize > 0)
@@ -294,10 +300,16 @@
 		
 		public function getUser_Friends($number)
 		{//Freunde
-			$this->user_friends = $this->facebook->api("/" . $this->user_id . "/friend&fields=" . $this->user_friendsFields . "&limit=5", "GET"); 
+			if ($this->user_friends == null)
+				$this->user_friends = $this->facebook->api("/" . $this->user_id . "/friends?fields=" . $this->user_friendsFields, "GET");
 			
-			$friendsData = $this->user_friends['data'];
-			$friendsSize = sizeof($friendsData);
+			$friendsData = $this->user_friends['data'];		
+			
+			if ($number > 0)
+				$friendsSize = $number;
+			else
+				$friendsSize = sizeof($friendsData);
+	
 			$allFriends = array();
 
 			if ($friendsSize > 0)
@@ -314,20 +326,26 @@
 		
 		public function getUser_NumberOfFriends()
 		{//Anzahl Freunde
-			$this->user_friends = $this->facebook->api("/" . $this->user_id . "/friends?fields=" . $this->user_friendsFields, "GET"); 
+			if ($this->user_friends == null)
+				$this->user_friends = $this->facebook->api("/" . $this->user_id . "/friends?fields=" . $this->user_friendsFields, "GET"); 
 			
 			$friendsData = $this->user_friends['data'];
 			
 			return sizeof($friendsData);
 		}
 		
-		public function getUser_Groups()
+		public function getUser_Groups($number)
 		{//Gruppen
 			if ($this->user_groups == null)
 				$this->user_groups = $this->facebook->api("/" . $this->user_id . "/groups?fields=" . $this->user_groupsFields, "GET"); 
 			
 			$groupsData = $this->user_groups['data'];
-			$groupsSize = sizeof($groupsData);
+			
+			if ($number > 0)
+				$groupsSize = $number;
+			else
+				$groupsSize = sizeof($groupsData);
+			
 			$allGroups = array();
 			
 			if ($groupsSize > 0)
@@ -352,13 +370,18 @@
 			return sizeof($groupsData);
 		}
 		
-		public function getUser_Games()
+		public function getUser_Games($number)
 		{//Spiele
 			if ($this->user_games == null)
 				$this->user_games = $this->facebook->api("/" .  $this->user_id . "/games", "GET");
 			
 			$gamesData = $this->user_games['data'];
-			$gamesSize = sizeof($gamesData);
+			
+			if ($number > 0)
+				$gamesSize = $number;
+			else
+				$gamesSize = sizeof($gamesData);
+				
 			$allGames = array();
 		
 			if ($gamesSize > 0)
@@ -384,17 +407,22 @@
 			return sizeof($gamesData);
 		}
 		
-		public function getUser_Likes()
+		public function getUser_Likes($number)
 		{//Likes
 			if ($this->user_likes == null)
 				$this->user_likes = $this->facebook->api("/" .  $this->user_id . "/likes", "GET");
 				
 			$likesData = $this->user_likes['data'];
-			$likesSize = sizeof($likesData);
+			
+			if ($number > 0)
+				$likesSize = $number;
+			else
+				$likesSize = sizeof($likesData);
+				
 			$allLikes = array();
 			
 			if ($likesSize > 0)
-			{
+			{				
 				for ($i = 0; $i < $likesSize; $i++) 
 				{
 					$like = $likesData[$i]; 
@@ -409,20 +437,25 @@
 		public function getUser_NumberOfLikes()
 		{//Anzahl Likes
 			if ($this->user_likes == null)
-				$this->user_likes = $this->facebook->api("/" .  $this->user_id . "/likes?fields=" . $this->user_likesFields, "GET");
+				$this->user_likes = $this->facebook->api("/" .  $this->user_id . "/likes", "GET");
 				
 			$likesData = $this->user_likes['data'];
 			
 			return sizeof($likesData);
 		}
 		
-		public function getUser_Interests()
+		public function getUser_Interests($number)
 		{//Interessen
 			if ($this->user_interest == null)
 				$this->user_interest = $this->facebook->api("/" . $this->user_id . "/interests", "GET");
 				
 			$interestsData = $this->user_interest['data'];
-			$interestsSize = sizeof($interestsData);
+			
+			if ($number > 0)
+				$interestsSize = $number;
+			else
+				$interestsSize = sizeof($interestsData);
+				
 			$allInterests = array();
 			
 			if ($interestsSize > 0)
@@ -448,13 +481,18 @@
 			return sizeof($interestsData);
 		}
 		
-		public function getUser_Activities()
+		public function getUser_Activities($number)
 		{//Aktivitäten
 			if ($this->user_activities == null)
 				$this->user_activities = $this->facebook->api("/" . $this->user_id . "/activities", "GET");
 			
 			$activitiesData = $this->user_activities['data'];
-			$activitiesSize = sizeof($activitiesData);
+			
+			if ($number > 0)
+				$activitiesSize = $number;
+			else
+				$activitiesSize = sizeof($activitiesData);
+				
 			$allActivities = array();
 			
 			if ($activitiesSize > 0)
@@ -480,13 +518,18 @@
 			return sizeof($activitiesData);
 		}
 		
-		public function getUser_Books()
+		public function getUser_Books($number)
 		{//Bücher
 			if ($this->user_books == null)
 				$this->user_books = $this->facebook->api("/" . $this->user_id . "/books", "GET");
 			
 			$booksData = $this->user_books['data'];
-			$booksSize = sizeof($booksData);
+			
+			if ($number > 0)
+				$booksSize = $number;
+			else
+				$booksSize = sizeof($booksData);
+				
 			$allBooks = array();
 			
 			if ($booksSize > 0)
@@ -512,13 +555,18 @@
 			return sizeof($booksData);
 		}
 		
-		public function getUser_Events()
+		public function getUser_Events($number)
 		{//Events
 			if ($this->user_events == null)
 				$this->user_events = $this->facebook->api("/" . $this->user_id . "/events", "GET");
 				
 			$eventsData = $this->user_events['data'];
-			$eventsSize = sizeof($eventsData);
+			
+			if ($number > 0)
+				$eventsSize = $number;
+			else
+				$eventsSize = sizeof($eventsData);
+				
 			$allEvents = array();
 			
 			if ($eventsSize > 0)
@@ -550,8 +598,12 @@
 				$this->user_checkins = $this->facebook->api("/" . $this->user_id . "/checkins?access_token=" . $this->facebook->getAccessToken(), "GET"); //ENTSPRECHENDE FELDER RAUSHOLEN
 			
 			$checkinsData = $this->user_checkins['data']['place']['0'];
-			var_dump($this->user_checkins);
-			$checkinsSize = sizeof($checkinsData);
+			
+			if ($number > 0)
+				$checkinsSize = $number;
+			else
+				$checkinsSize = sizeof($checkinsData);
+				
 			$allCheckins = array();
 
 			if ($checkinsSize > 0)
@@ -594,8 +646,6 @@
 		  }
 		
 
-		
-		
 		public function __destruct()
 		{//SOLL ES DIE MÖGLICHKEIT GEBEN?
 			$params = array( 'next' => $this->logout_url); //Wo geht es hin nach dem Logout?
