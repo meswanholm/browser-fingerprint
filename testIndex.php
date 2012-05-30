@@ -151,7 +151,7 @@
 	print ("</br>");
 	
 	//Freunde
-	$friends = $facebook2->getUser_Friends(20);
+	$friends = $facebook2->getUser_Friends('20');
 	print ("</br>");
 	print ("<b>Freunde:</b>");
 	print ("</br>");
