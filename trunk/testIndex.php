@@ -1,21 +1,4 @@
-<html>
-<head>
-<title>entwurf2</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="default.css" />
-</head>
-<body>
-<!-- Save for Web Slices (entwurf2.psd) -->
-<table id="Tab" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td>
-			<div id="top">
-			</div>
-	</tr>
-	<tr>
-		<td>
-			<div class="content"> 
-			<?php
+<?php
 	session_start(); //SONST 'Warning: session_start() [function.session-start]: Cannot send session cache limiter'
 	print ("<html>");
 	print ("<head>");
@@ -250,14 +233,3 @@
 	print ("</body>");
 	print ("</html>");
 ?>
-			
-			</div>
-	</tr>
-	<tr>
-		<td>
-			<div id="bottom">
-			</div>
-	</tr>
-</table>
-</body>
-</html>
