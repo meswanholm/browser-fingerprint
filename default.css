@@ -10,21 +10,21 @@ body {
 	background:url("images/board.jpg");	
 	background-size: 391px 100%;
 	background-repeat: repeat-x;
+	margin-left: 5em;
 }	
 
 #image {
 	float: right;
 	margin-right: 5em;
-	border-radius: 0.625em;								/*abgerundete Ecken*/
-	-moz-border-radius: 0.300em;						/*Firefox*/
-	-webkit-border-radius: 0.300em;						/*Chrome*/
-	box-shadow: 0.000em 0.0000em 0.500em #999;			/*Schlagschatten*/
-	-moz-box-shadow: 0.000em 0.0000em 0.500em #999;		/* Firefox */
-	-webkit-box-shadow: 0.000em 0.0000em 0.500em #999; 	/* Chrome */
-	border: 0.1em solid #999;
+	box-shadow: 0.000em 0.0000em 0.700em #000000;			/*Schlagschatten*/
+	-moz-box-shadow: 0.000em 0.0000em 0.700em #000000;		/* Firefox */
+	-webkit-box-shadow: 0.000em 0.0000em 0.700em #000000; 	/* Chrome */
+	border: 0.6em solid #ffffff;
+	border-bottom: 1.5em solid #ffffff;
+	filter: gray; 											/* GRAU - IE */
+	filter: url(filters.svg#grayscale); 					/* Firefox */
+    -webkit-filter: grayscale(1); 							/* Chrome */
 }
-
-
 
 #top {
 	height:228px;
@@ -43,11 +43,11 @@ body {
 	background:url("images/2.png");
 	background-size: 900px 100%;
 	background-repeat: no-repeat;
-		box-shadow: 0.500em 0.500em 0.500em #ffffff;			/*Schlagschatten*/
-	-moz-box-shadow: 0.500em 0.500em 0.500em #ffffff;	/* Firefox */
-	-webkit-box-shadow: 0.500em 0.500em 0.500em #ffffff; 	/* Chrome */
+	box-shadow: 0.000em 0.0000em 1.500em #ffffff;			/*Schlagschatten*/
+	-moz-box-shadow: 0.000em 0.0000em 1.500em #ffffff;		/* Firefox */
+	-webkit-box-shadow: 0.000em 0.0000em 1.500em #ffffff; 	/* Chrome */
 	min-height:798px;
-	width: 900px;
+	max-width: 900px;
 	padding: 0em 2em 0em 2em;		/* innere Abstände oben/rechts/unten/links */
 	font-size: 0.815em;				
 	font-family: verdana;
@@ -58,9 +58,9 @@ body {
 	height:248px;
 	width:900px;
 	background:url("images/3.png");
-	box-shadow: 0.500em 0.500em 0.500em #ffffff;			/*Schlagschatten*/
-	-moz-box-shadow: 0.500em 0.500em 0.500em #ffffff;	/* Firefox */
-	-webkit-box-shadow: 0.500em 0.500em 0.500em #ffffff; 	/* Chrome */
+	box-shadow: 0.000em 0.0000em 1.500em #ffffff;			/*Schlagschatten*/
+	-moz-box-shadow: 0.000em 0.0000em 1.500em #ffffff;		/* Firefox */
+	-webkit-box-shadow: 0.000em 0.0000em 1.500em #ffffff; 	/* Chrome */
 	font-size: 0.750em;				
 	font-family: verdana;
 	color: #ffffff;										/* Schriftfarbe */

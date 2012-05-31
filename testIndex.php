@@ -20,14 +20,17 @@
         $facebook2 = new FacebookTracking("facebook.php", "serviceRoutines.php", "http://www.einfach-wir.net/daniel/fb2/testIndex.php", "294040014004290", "942bf9f89444df74c4dd36701a24e25a");
         
         //Name
+		print ("</br>");
         print ("<b>Name:</b> " . $facebook2->getUser_Name());
         print ("</br>");
         print ("</br>");
         
         //Profilbild
+		echo '<div id="image">';
         print ("<img src=\"" . $facebook2->getUser_PictureSource() . "\" />");
         print ("</br>");
-        
+        echo '</div>';
+		
         //College
         $colleges = $facebook2->getUser_Colleges();
         print ("</br>");
