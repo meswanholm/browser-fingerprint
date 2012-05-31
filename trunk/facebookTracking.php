@@ -592,7 +592,7 @@
 			return sizeof($eventsData);
 		}
 		
-		public function getUser_Checkins()
+		public function getUser_Checkins($number)
 		{//Checkins
 			if ($this->user_checkins == null);
 				$this->user_checkins = $this->facebook->api("/" . $this->user_id . "/checkins?access_token=" . $this->facebook->getAccessToken(), "GET"); //ENTSPRECHENDE FELDER RAUSHOLEN
