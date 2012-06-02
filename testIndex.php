@@ -105,7 +105,7 @@
         foreach ($languages as $language)
         {
                 print ($language);
-                print ("</br>");
+                print (" | ");
         }
         print ("<b>Anzahl Sprachen: </b>" . $facebook2->getUser_NumberOfLanguages());
         print ("</br>");        
@@ -118,7 +118,7 @@
         foreach ($games as $game)
         {
                 print ($game);
-                print ("</br>");
+                print (" | ");
         }
         print ("<b>Anzahl Spiele: </b>" . $facebook2->getUser_NumberOfGames());
         print ("</br>");
@@ -131,7 +131,7 @@
         foreach ($groups as $group)
         {
                 print ($group);
-                print ("</br>");
+                print (" | ");
         }
         print ("<b>Anzahl Gruppen: </b>" . $facebook2->getUser_NumberOfGroups());
         print ("</br>");
@@ -157,7 +157,7 @@
         foreach ($friends as $friend)
         {
                 print ($friend);
-                print ("</br>");
+                print (" | ");
         }
         print ("<b>Anzahl Freunde: </b>" . $facebook2->getUser_NumberOfFriends());
         
@@ -169,7 +169,7 @@
         foreach ($interests as $interest)
         {
                 print ($interest);
-                print ("</br>");
+                print (" | ");
         }
         print ("<b>Anzahl Interessen: </b>" . $facebook2->getUser_NumberOfInterest());
         
@@ -181,7 +181,7 @@
         foreach ($activities as $activity)
         {
                 print ($activity);
-                print ("</br>");
+                print (" | ");
         }
         print ("<b>Anzahl Aktivitäten: </b>" . $facebook2->getUser_NumberOfActivities());
         
@@ -193,7 +193,7 @@
         foreach ($books as $book)
         {
                 print ($book);
-                print ("</br>");
+                print (" | ");
         }
         print ("<b>Anzahl Bücher: </b>" . $facebook2->getUser_NumberOfBooks());
         

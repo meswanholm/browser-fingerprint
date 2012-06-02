@@ -2,7 +2,7 @@
 /*			                  Source History									 */
 /*-------------------------------------------------------------------------------*/
 /*2012-05-29|DW: Erste Version													 */
-/*																				 */
+/*2012-06-02|DW: Box-shadow + grey-filter added									 */
 /*********************************************************************************/
 
 
@@ -30,9 +30,9 @@ body {
 	height:228px;
 	width:900px;
 	background:url("images/1.png");
-	box-shadow: 0.000em 0.0000em 1.500em #ffffff;			/*Schlagschatten*/
-	-moz-box-shadow: 0.000em 0.0000em 1.500em #ffffff;		/* Firefox */
-	-webkit-box-shadow: 0.000em 0.0000em 1.500em #ffffff; 	/* Chrome */
+	box-shadow: 10px -10px 6px -6px #333;			/* Schlagschatten rechts+oben */
+	-moz-box-shadow: 10px -10px 6px -6px #333;		/* Firefox */
+	-webkit-box-shadow: 10px -10px 6px -6px #333;	/* Chrome */
 	font-size: 0.750em;				
 	font-family: verdana;
 	color: #ffffff;								/* Schriftfarbe */
@@ -43,12 +43,12 @@ body {
 	background:url("images/2.png");
 	background-size: 900px 100%;
 	background-repeat: no-repeat;
-	box-shadow: 0.000em 0.0000em 1.500em #ffffff;			/*Schlagschatten*/
-	-moz-box-shadow: 0.000em 0.0000em 1.500em #ffffff;		/* Firefox */
-	-webkit-box-shadow: 0.000em 0.0000em 1.500em #ffffff; 	/* Chrome */
+	box-shadow: 10px 0 6px -6px #333;			/* Schlagschatten rechts */
+	-moz-box-shadow: 10px 0 6px -6px #333;		/* Firefox */
+	-webkit-box-shadow: 10px 0 6px -6px #333;	/* Chrome */
 	min-height:798px;
 	max-width: 900px;
-	padding: 0em 2em 0em 2em;		/* innere Abstände oben/rechts/unten/links */
+	//padding: 0 10px 0 10px;				/* innere Abstände oben/rechts/unten/links */
 	font-size: 0.815em;				
 	font-family: verdana;
 	color: #4d4d4d;								/* Schriftfarbe */
@@ -58,9 +58,9 @@ body {
 	height:248px;
 	width:900px;
 	background:url("images/3.png");
-	box-shadow: 0.000em 0.0000em 1.500em #ffffff;			/*Schlagschatten*/
-	-moz-box-shadow: 0.000em 0.0000em 1.500em #ffffff;		/* Firefox */
-	-webkit-box-shadow: 0.000em 0.0000em 1.500em #ffffff; 	/* Chrome */
+	box-shadow: 10px 10px 6px -6px #333;			/* Schlagschatten unten+rechts */
+	-moz-box-shadow: 10px 10px 6px -6px #333;		/* Firefox */
+	-webkit-box-shadow: 10px 10px 6px -6px #333;	/* Chrome */
 	font-size: 0.750em;				
 	font-family: verdana;
 	color: #ffffff;										/* Schriftfarbe */
