@@ -611,7 +611,7 @@
 				for ($i = 0; $i < $checkinsSize; $i++) 
 				{ 
 					$checkin = $checkinsData[$i];
-					$allCheckins[] = $this->serviceRoutines->convertSpecialSign($checkin['name']); 
+					$allCheckins[] = $this->serviceRoutines->convertSpecialSign($checkin); 
 				};
 			}
 			
