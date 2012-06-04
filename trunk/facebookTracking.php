@@ -597,7 +597,7 @@
 			if ($this->user_checkins == null);
 				$this->user_checkins = $this->facebook->api("/" . $this->user_id . "/checkins?access_token=" . $this->facebook->getAccessToken(), "GET"); //ENTSPRECHENDE FELDER RAUSHOLEN
 			
-			$checkinsData = $this->user_checkins['data']['place']['0'];
+			$checkinsData = $this->user_checkins['data'];
 			
 			if ($number > 0)
 				$checkinsSize = $number;
@@ -623,28 +623,10 @@
 			if ($this->user_checkins == null);
 				$this->user_checkins = $this->facebook->api("/" . $this->user_id . "/checkins?access_token=" . $this->facebook->getAccessToken(), "GET"); //ENTSPRECHENDE FELDER RAUSHOLEN
 				
-			$checkinsData = $this->user_checkins['data']['place'];
+			$checkinsData = $this->user_checkins['data'];
 			
 			return sizeof($checkinsData);
 		}
-		
-		public function getUser_Checkins_FQL()
-		{//Checkins
-		 // Testlauf
-		  $fql_query_checkins_all = 'SELECT+checkin_id,+author_uid,+page_id,+app_id,+post_id,+tagged_uids,+message+FROM+checkin+WHERE+author_uid=me()';
-		  $fql_query_checkins_place = 'SELECT+name+FROM+place+WHERE+page_id+IN+(SELECT+page_id+FROM+#fql_query_checkins_all)';
-		  $fql_test = 'SELECT+name+FROM+user+WHERE+uid+=me()';
-		  $fql_query_url = 'https://graph.facebook.com/fql?q='.$fql_query_checkins_all.'&access_token='.$this->facebook->getAccessToken();
-		  $fql_query_result = file_get_contents($fql_query_url);
-		  $fql_query_obj = json_decode($fql_query_result, true);
-			
-		  //display results of fql query
-		  echo '<pre>';
-		  print_r("query results:");
-		  print_r($fql_query_obj);
-		  echo '</pre>';
-		  }
-		
 
 		public function __destruct()
 		{//SOLL ES DIE MÖGLICHKEIT GEBEN?

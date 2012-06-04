@@ -226,7 +226,7 @@
         
         
     //User-Checkins
-        $checkins = $facebook2->getUser_Checkins();
+        $checkins = $facebook2->getUser_Checkins(0);
         print ("</br>");
         print ("<b>User-Checkins:</b>");
         print ("</br>");
