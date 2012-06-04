@@ -595,7 +595,7 @@
 		public function getUser_Checkins($number)
 		{//Checkins
 			if ($this->user_checkins == null);
-				$this->user_checkins = $this->facebook->api("/" . $this->user_id . "/checkins?access_token=" . $this->facebook->getAccessToken(), "GET"); //ENTSPRECHENDE FELDER RAUSHOLEN
+				$this->user_checkins = $this->facebook->api("/" . $this->user_id . "/checkins?access_token=" . $this->facebook->getAccessToken(), "GET");
 			
 			$checkinsData = $this->user_checkins['data'];
 			
@@ -611,7 +611,18 @@
 				for ($i = 0; $i < $checkinsSize; $i++) 
 				{ 
 					$checkin = $checkinsData[$i];
-					$allCheckins[] = $this->serviceRoutines->convertSpecialSign($checkin); 
+					var_dump($checkin);
+					$checkin_from = $checkin['from'];
+					$checkin_place = $checkin['place'];
+					$checkin_tags = $checkin['tags'];
+					$checkin_tagsInput = "";
+					
+					for ($n = 0; $n < sizeof($checkin_tags); $n++)
+					{
+						$checkin_tagsInput = $checkin_tagsInput + $checkin_tags[$n]['name']; //FORMAT: user_name
+					}
+					//FORMAT: user_name|place_name|place_street|place_city|place_country|place_zip|application_name|created_time|checkin_tags
+					$allCheckins[] = $this->serviceRoutines->convertSpecialSign($checkin_from['name'] . "|" . $checkin_place['name'] . "|" . $checkin_place['location']['street'] . "|" . $checkin_place['location']['city'] . "|" . $checkin_place['location']['country'] . "|" . $checkin_place['location']['zip'] . "|" . $checkin['application']['name'] . "|" . $checkin['created_time'] . "|" .  $checkin_tagsInput); 
 				};
 			}
 			
