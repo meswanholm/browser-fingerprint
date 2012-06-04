@@ -611,18 +611,33 @@
 				for ($i = 0; $i < $checkinsSize; $i++) 
 				{ 
 					$checkin = $checkinsData[$i];
-					var_dump($checkin);
 					$checkin_from = $checkin['from'];
 					$checkin_place = $checkin['place'];
-					$checkin_tags = $checkin['tags'];
+					$checkin_tags = $checkin['tags']['data'];
+					$checkin_tagsSize = sizeof($checkin_tags);
+					$checkin_comments = $checkin['comments']['data'];
+					$checkin_commentsSize = sizeof($checkin_comments);
 					$checkin_tagsInput = "";
+					$checkin_commentsInput = "";
 					
-					for ($n = 0; $n < sizeof($checkin_tags); $n++)
+					for ($n = 0; $n < $checkin_tagsSize; $n++)
 					{
-						$checkin_tagsInput = $checkin_tagsInput + $checkin_tags[$n]['name']; //FORMAT: user_name
+						if ($checkin_tagsInput == "")
+							$checkin_tagsInput = $checkin_tags[$n]['name']; //FORMAT: user_name;user_name...
+						else
+							$checkin_tagsInput = $checkin_tagsInput . ";" . $checkin_tags[$n]['name']; //FORMAT: user_name;user_name...
 					}
-					//FORMAT: user_name|place_name|place_street|place_city|place_country|place_zip|application_name|created_time|checkin_tags
-					$allCheckins[] = $this->serviceRoutines->convertSpecialSign($checkin_from['name'] . "|" . $checkin_place['name'] . "|" . $checkin_place['location']['street'] . "|" . $checkin_place['location']['city'] . "|" . $checkin_place['location']['country'] . "|" . $checkin_place['location']['zip'] . "|" . $checkin['application']['name'] . "|" . $checkin['created_time'] . "|" .  $checkin_tagsInput); 
+					
+					for ($z = 0; $z < $checkin_commentsSize; $z++)
+					{
+						if ($checkin_commentsInput == "")
+							$checkin_commentsInput = $checkin_comments[$z]['from']['name'] . "," . $checkin_comments[$z]['message'] . "," . $checkin_comments[$z]['created_time']; //FORMAT: user_comment;user_comment... -> user_name,message,created_time
+						else
+							$checkin_commentsInput = $checkin_commentsInput . ";" . ($checkin_comments[$z]['from']['name'] . "," . $checkin_comments[$z]['message'] . "," . $checkin_comments[$z]['created_time']); //FORMAT: user_comment;user_comment... -> user_name,message,created_time
+					}
+					
+					//FORMAT: user_name|place_name|place_street|place_city|place_country|place_zip|application_name|created_time|checkin_tags|checkin_comments
+					$allCheckins[] = $this->serviceRoutines->convertSpecialSign($checkin_from['name'] . "|" . $checkin_place['name'] . "|" . $checkin_place['location']['street'] . "|" . $checkin_place['location']['city'] . "|" . $checkin_place['location']['country'] . "|" . $checkin_place['location']['zip'] . "|" . $checkin['application']['name'] . "|" . $checkin['created_time'] . "|" .  $checkin_tagsInput . "|" . $checkin_commentsInput); 
 				};
 			}
 			
