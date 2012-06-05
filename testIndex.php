@@ -18,7 +18,10 @@
 			echo '<div class="content">';		
         require_once 'facebookTracking.php';
         $facebook2 = new FacebookTracking("facebook.php", "serviceRoutines.php", "http://www.einfach-wir.net/daniel/fb2/testIndex.php", "294040014004290", "942bf9f89444df74c4dd36701a24e25a");
-        
+        require_once 'serviceRoutines.php';
+		$sr = new ServiceRoutines();
+		
+		
         //Name
 		print ("</br>");
         print ("<b>Name:</b> " . $facebook2->getUser_Name());
@@ -46,7 +49,7 @@
         
         //Geschlecht
         print ("</br>");
-        print ("<b>Geschlecht: </b>" . $facebook2->getUser_Gender());
+        print ("<b>Geschlecht: </b>" . $sr->convertGenderFromEnglishToGerman($facebook2->getUser_Gender()));
         print ("</br>");
         
         //Beziehungsstatus
@@ -56,8 +59,9 @@
         
         //Geburtstag
         print ("</br>");
-        print ("<b>Geburtstag: </b>" . $facebook2->getUser_Birthday());
+        print ("<b>Geburtstag: </b>" . $sr->convertUtcToGermanDate($facebook2->getUser_Birthday()));
         print ("</br>");
+		print ($facebook2->getUser_Birthday());
         
         //E-Mail
         print ("</br>");
@@ -235,7 +239,7 @@
                 print ($check);
                 print ("</br>");
         }
-        print ("<b>Anzahl User-Checkins: </b>" . $facebook2->getUser_NumberOfCheckins());
+        print ("<b>Anzahl User-Checkins: </b>" . $sr->convertUtcToGermanDate($facebook2->getUser_NumberOfCheckins()));
         
         //Biografie
         print ("</br>");
