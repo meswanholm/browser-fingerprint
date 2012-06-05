@@ -113,21 +113,13 @@
 		public function getUser_Gender()
 		{//Geschlecht
 			if ($this->user_profile['gender'] != "")
-			{
-				if ($this->user_profile['gender'] == 'male')
-					return "m&aumlnnlich"; 
-				else
-					return "weiblich";
-			}
+				return $this->user_profile['gender'];
 		}
 		
 		public function getUser_Birthday()
 		{//Geburtstag
 			if ($this->user_profile['birthday'] != "")
-			{
-				$birthday = $this->user_profile['birthday'];
-				return $birthday[3] . $birthday[4] . "." . $birthday[0] . $birthday[1] . "." . $birthday[6] . $birthday[7] . $birthday[8] . $birthday[9];
-			}
+				return $this->user_profile['birthday'];
 			
 			return "";
 		}
