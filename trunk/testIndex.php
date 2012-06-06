@@ -21,10 +21,10 @@
 				require_once 'serviceRoutines.php';
 				$sr = new ServiceRoutines();
 		
-				echo '<table style="width: 850px">';
+				echo '<table>';
 				echo '<tr>';
 				echo '<td>';
-				echo '<div class="content">';
+				echo '<div class="contentTable">';
 				//Name
 				print ("</br>");
 				print ("<b>Name:</b> " . $facebook2->getUser_Name());
