@@ -30,20 +30,20 @@ body {
 #top {
 	height:228px;
 	width:900px;
-	background:url("images/1.png");
-	box-shadow: 10px -10px 6px -6px #333;			/* Schlagschatten rechts+oben */
-	-moz-box-shadow: 10px -10px 6px -6px #333;		/* Firefox */
-	-webkit-box-shadow: 10px -10px 6px -6px #333;	/* Chrome */
+	background:url("images/1.jpg");
+	box-shadow: 0.625em 0.625em 0.500em #333;			/*Schlagschatten*/
+	-moz-box-shadow: 0.625em 0.625em 0.500em #333; 		/* Firefox */
+	-webkit-box-shadow: 0.625em 0.625em 0.500em #333; 	/* Chrome */
 }
 
 
 .contentbg {
-	background:url("images/2.png");
+	background:url("images/2.jpg");
 	background-size: 900px 100%;
 	background-repeat: no-repeat;
-	box-shadow: 10px 0 6px -6px #333;			/* Schlagschatten rechts */
-	-moz-box-shadow: 10px 0 6px -6px #333;		/* Firefox */
-	-webkit-box-shadow: 10px 0 6px -6px #333;	/* Chrome */
+	box-shadow: 0.625em 0.625em 0.500em #333;			/*Schlagschatten*/
+	-moz-box-shadow: 0.625em 0.625em 0.500em #333; 		/* Firefox */
+	-webkit-box-shadow: 0.625em 0.625em 0.500em #333; 	/* Chrome */
 	min-height:798px;
 	max-width: 900px;
 }
@@ -58,10 +58,10 @@ body {
 #bottom {
 	height:248px;
 	width:900px;
-	background:url("images/3.png");
-	box-shadow: 10px 10px 6px -6px #333;			/* Schlagschatten unten+rechts */
-	-moz-box-shadow: 10px 10px 6px -6px #333;		/* Firefox */
-	-webkit-box-shadow: 10px 10px 6px -6px #333;	/* Chrome */
+	background:url("images/3.jpg");
+	box-shadow: 0.625em 0.625em 0.500em #333;			/*Schlagschatten*/
+	-moz-box-shadow: 0.625em 0.625em 0.500em #333; 		/* Firefox */
+	-webkit-box-shadow: 0.625em 0.625em 0.500em #333; 	/* Chrome */
 }
 
 
