@@ -34,13 +34,10 @@ body {
 	box-shadow: 10px -10px 6px -6px #333;			/* Schlagschatten rechts+oben */
 	-moz-box-shadow: 10px -10px 6px -6px #333;		/* Firefox */
 	-webkit-box-shadow: 10px -10px 6px -6px #333;	/* Chrome */
-	font-size: 0.750em;				
-	font-family: verdana;
-	color: #ffffff;								/* Schriftfarbe */
 }
 
 
-.content {
+.contentbg {
 	background:url("images/2.png");
 	background-size: 900px 100%;
 	background-repeat: no-repeat;
@@ -49,10 +46,13 @@ body {
 	-webkit-box-shadow: 10px 0 6px -6px #333;	/* Chrome */
 	min-height:798px;
 	max-width: 900px;
-	//padding: 0 10px 0 10px;				/* innere Abstände oben/rechts/unten/links */
+}
+
+.content {
 	font-size: 0.815em;				
 	font-family: verdana;
 	color: #4d4d4d;								/* Schriftfarbe */
+	padding: 0 10px 0 10px;						/* innere Abstände oben/rechts/unten/links */
 }
 
 #bottom {
@@ -62,9 +62,6 @@ body {
 	box-shadow: 10px 10px 6px -6px #333;			/* Schlagschatten unten+rechts */
 	-moz-box-shadow: 10px 10px 6px -6px #333;		/* Firefox */
 	-webkit-box-shadow: 10px 10px 6px -6px #333;	/* Chrome */
-	font-size: 0.750em;				
-	font-family: verdana;
-	color: #ffffff;										/* Schriftfarbe */
 }
 
 
@@ -78,7 +75,7 @@ h1 {
 h2 {
   font-size: 1em;
   font-family: Verdana;
-  color: #008db5;	
+  color: #4d4d4d;	
 }
 	
 a {
@@ -86,4 +83,5 @@ a {
   font-size: 0.815em;
   font-weight: bold;
   color: #4d4d4d;
+  padding-left: 10px;
 }
