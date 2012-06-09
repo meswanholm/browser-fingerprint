@@ -44,5 +44,15 @@
 					
 			return "";
 		}
+		
+		public function translateEventTextFormEnglishToGerman($value)
+		{
+			if ($value == "unsure")
+				return "nimmt nicht teil";
+			else if ($value == "attending")
+				return "nimmt sicher teil";
+				
+			//abgesagte Termine können nicht ermittelt werden.
+		}
 	}
 ?>
