@@ -375,7 +375,7 @@
 								for ($i = 0; $i < $number; $i++)
 								{									
 									$splitEvent = explode("|", $events[$i]);
-									echo $splitEvent[0] . " in " . $splitEvent[3] . " ist da? " . $splitEvent[4];
+									echo $splitEvent[0] . " in " . $splitEvent[3] . " ist da? " . $sr->translateEventTextFormEnglishToGerman($splitEvent[4]);
 								
 									if ($number > 1 && ($i+1) < $number)
 										echo ', ';
