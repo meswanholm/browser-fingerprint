@@ -31,7 +31,8 @@
 			if (strlen($value) == 10) // 10/28/1987
 				return $value[3] . $value[4] . "." . $value[0] . $value[1] . "." . $value[6] . $value[7] . $value[8] . $value[9];
 			else if (strlen($value) == 24) // 2012-05-11T07:37:09+0000
-				return "UTC"; //HIER DANN UTC MIT UHRZEIT!!!
+				return "UTC"; 
+				//$value[8] . $value[9] . "." $value[5] . $value[6] . "." . $value[0] . $value[1] . $value[2] . $value[3] . " um " . $value[11] . $value[12] . $value[13] . $value[14] . $value[15] . $value[16] . $value[17] . $value[18]; //HIER DANN UTC MIT UHRZEIT!!!
 		}
 		
 		public function convertGenderFromEnglishToGerman($value)
