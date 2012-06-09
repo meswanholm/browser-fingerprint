@@ -214,7 +214,7 @@
 		{//Interesse an -> MUSS NOCH GETESTET WERDEN WAS FÜR EINTRÄGE GIBT ES?
 			$interests = $this->user_profile['interested_in'];
 			
-			if ($number > 0)
+			if ($number > 0 && $number < sizeof($interests))
 				$interestSize = $number;
 			else
 				$interestSize = sizeof($interests);
@@ -297,7 +297,7 @@
 			
 			$friendsData = $this->user_friends['data'];		
 			
-			if ($number > 0)
+			if ($number > 0 && $number < sizeof($friendsData))
 				$friendsSize = $number;
 			else
 				$friendsSize = sizeof($friendsData);
@@ -333,7 +333,7 @@
 			
 			$groupsData = $this->user_groups['data'];
 			
-			if ($number > 0)
+			if ($number > 0 && $number < sizeof($groupsData))
 				$groupsSize = $number;
 			else
 				$groupsSize = sizeof($groupsData);
@@ -369,7 +369,7 @@
 			
 			$gamesData = $this->user_games['data'];
 			
-			if ($number > 0)
+			if ($number > 0 && $number < sizeof($gamesData))
 				$gamesSize = $number;
 			else
 				$gamesSize = sizeof($gamesData);
@@ -406,7 +406,7 @@
 				
 			$likesData = $this->user_likes['data'];
 			
-			if ($number > 0)
+			if ($number > 0 && $number < sizeof($likesData))
 				$likesSize = $number;
 			else
 				$likesSize = sizeof($likesData);
@@ -443,7 +443,7 @@
 				
 			$interestsData = $this->user_interest['data'];
 			
-			if ($number > 0)
+			if ($number > 0 && $number < sizeof($interestsData))
 				$interestsSize = $number;
 			else
 				$interestsSize = sizeof($interestsData);
@@ -480,7 +480,7 @@
 			
 			$activitiesData = $this->user_activities['data'];
 			
-			if ($number > 0)
+			if ($number > 0 && $number < sizeof($activitiesData))
 				$activitiesSize = $number;
 			else
 				$activitiesSize = sizeof($activitiesData);
@@ -517,7 +517,7 @@
 			
 			$booksData = $this->user_books['data'];
 			
-			if ($number > 0)
+			if ($number > 0 && $number < sizeof($booksData))
 				$booksSize = $number;
 			else
 				$booksSize = sizeof($booksData);
@@ -554,7 +554,7 @@
 				
 			$eventsData = $this->user_events['data'];
 			
-			if ($number > 0)
+			if ($number > 0 && $number < sizeof($eventsData))
 				$eventsSize = $number;
 			else
 				$eventsSize = sizeof($eventsData);
@@ -591,7 +591,7 @@
 			
 			$checkinsData = $this->user_checkins['data'];
 			
-			if ($number > 0)
+			if ($number > 0 && $number < sizeof($checkinsData))
 				$checkinsSize = $number;
 			else
 				$checkinsSize = sizeof($checkinsData);
