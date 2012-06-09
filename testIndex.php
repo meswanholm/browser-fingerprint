@@ -28,236 +28,410 @@
 				echo '<table>';
 					echo '<tr>';
 					echo '<td>';
-						echo '<div id="contentTable">';
-						
-						//Name
-						echo '<p id="fbName">' . $facebook->getUser_Name() . '</p>';
-						
-						//Profilbild
-						echo '<div id="image">';
-							echo '<img src=' . $facebook->getUser_PictureSource() . ' />';
-						echo '</div>'; //endtag - image
-						
-						//Geschlecht
-						$gender = $facebook->getUser_Gender();
-						
-						if ($gender != "")
-							echo '<p>folgendes Geschlecht: ' . $sr->convertGenderFromEnglishToGerman($gender) . '</p>';
+						echo '<div id="profileInfoTop">';
+							//Name
+							echo '<p id="fbName">' . $facebook->getUser_Name() . '</p>';
 							
-						//Geburtstag
-						$birthday = $facebook->getUser_Birthday();
+							//Profilbild
+							echo '<div id="image">';
+								echo '<img src=' . $facebook->getUser_PictureSource() . ' />';
+							echo '</div>'; //endtag - image
+						echo '</div>'; //endtag - profileInfoTop
+						echo '<div id="profileInfoBottom">';
+							//Geschlecht
+							$gender = $facebook->getUser_Gender();
 						
-						if ($birthday != "")
-							echo '<p>Geboren am ' . $sr->convertUtcToGermanDate($birthday) . '</p>';
-						
-						//College
-						$collegesSize = $facebook->getUser_NumberOfColleges();
-						
-						if ($collegesSize > 0)
-						{
-							$colleges = $facebook->getUser_Colleges();
+							if ($gender != "")
+								echo '<p>folgendes Geschlecht: ' . $sr->convertGenderFromEnglishToGerman($gender) . '</p>';
 							
-							if ($collegesSize == 1)
-								echo '<p>vermutlich an folgenden Bildungseinrichtung anzutreffen: ';
-							else if ($collegesSize > 1)
-								echo '<p>vermutlich an folgenden Bildungseinrichtungen anzutreffen: ';
+							//Geburtstag
+							$birthday = $facebook->getUser_Birthday();
+						
+							if ($birthday != "")
+								echo '<p>Geboren am ' . $sr->convertUtcToGermanDate($birthday) . '</p>';
+						
+							//College
+							$collegesSize = $facebook->getUser_NumberOfColleges();
+													
+							if ($collegesSize > 0)
+							{
+								$colleges = $facebook->getUser_Colleges();
 							
-							for ($i = 0; $i < $collegesSize; $i++)
-							{									
-								$splitCollege = explode("|", $colleges[$i]);
-								echo $splitCollege[1];
+								if ($collegesSize == 1)
+									echo '<p>vermutlich an folgenden Bildungseinrichtung anzutreffen: ';
+								else if ($collegesSize > 1)
+									echo '<p>vermutlich an folgenden Bildungseinrichtungen anzutreffen: ';
+							
+								for ($i = 0; $i < $collegesSize; $i++)
+								{									
+									$splitCollege = explode("|", $colleges[$i]);
+									echo $splitCollege[1];
 								
-								if ($collegesSize > 1 && ($i+1) < $collegesSize)
-									echo ', ';
+									if ($collegesSize > 1 && ($i+1) < $collegesSize)
+										echo ', ';
+								}
+								echo '</p>';
 							}
-							echo '</p>';
-						}
 						
-						//Beziehungsstatus --> Vl. noch etwas kreativer so nach dem Motto sein Weib brauchen wir nicht :D
-						$relationShip = $facebook->getUser_RelationshipStatus();
-						
-						if ($relationShip != "")
-							echo '<p>Beziehung: ' . $relationShip . '</p>';
+							//Beziehungsstatus --> Vl. noch etwas kreativer so nach dem Motto sein Weib brauchen wir nicht :D
+							$relationShip = $facebook->getUser_RelationshipStatus();
+							
+							if ($relationShip != "")
+								echo '<p>Beziehung: ' . $relationShip . '</p>';
 							
 						
-						//Gruppen
-						$groupsSize = $facebook->getUser_NumberOfGroups();
+							//Gruppen
+							$groupsSize = $facebook->getUser_NumberOfGroups();
+							$number = 10;
+							
+							if ($groupsSize < $number)
+								$number = $groupsSize;
 						
-						if ($groupsSize > 0)
-						{
-							$groups = $facebook->getUser_Groups(0);
+							if ($groupsSize > 0)
+							{
+								$groups = $facebook->getUser_Groups($number);
 							
-							if ($groupsSize == 1)
-								echo '<p>gehört folgender Gruppierung an: ';
-							else if ($groupsSize > 1)
-								echo '<p>gehört folgenden Gruppierungen an: ';
+								if ($groupsSize == 1)
+									echo '<p>gehört folgender Gruppierung an: ';
+								else if ($groupsSize > 1)
+									echo '<p>gehört folgenden Gruppierungen an: ';
 							
-							for ($i = 0; $i < $groupsSize; $i++)
-							{					
-								echo $groups[$i];
+								for ($i = 0; $i < $groupsSize; $i++)
+								{					
+									echo $groups[$i];
 								
-								if ($groupsSize > 1 && ($i+1) < $groupsSize)
-									echo ', ';
+									if ($number > 1 && ($i+1) < $number)
+										echo ', ';
+								}
+								echo '</p>';
 							}
-							echo '</p>';
-						}
+							
+							//E-Mail
+							$email = $facebook->getUser_EMail();
+							
+							if ($email != "")
+								echo '<p>Kopfgeldforderung an ' . $email . '</p>';
+								
+							//Stadt
+							$town = $facebook->getUser_Town();
+							
+							if ($town != "")
+								echo '<p>treibt sich in folgenden Bezirken rum: ' . $town . '</p>';
+							
+							//Arbeit
+							$worksSize = $facebook->getUser_NumberOfWorks();
 						
+							if ($worksSize > 0)
+							{
+								$works = $facebook->$facebook->getUser_Works();
+							
+								if ($worksSize == 1)
+									echo '<p>verdient an folgender Machenschaft: ';
+								else if ($worksSize > 1)
+									echo '<p>verdient an folgenden Machenschaften: ';
+							
+								for ($i = 0; $i < $worksSize; $i++)
+								{									
+									$splitWork = explode("|", $works[$i]);
+									echo $splitWork[1];
+								
+									if ($worksSize > 1 && ($i+1) < $worksSize)
+										echo ', ';
+								}
+								echo '</p>';
+							}
+							
+							//Webseite
+							$website = $facebook->getUser_Website();
+							
+							if ($website != "")
+								echo '<p>genauere Beschreibung auf ' . $website . '</p>';
+							
+							//Politik
+							$politican = $facebook->getUser_Political();
+							
+							if ($politican != "")
+								echo '<p>unterstützt folgende politische Gruppen ' . $politican . '</p>';
+							
+							//Religion
+							$religion = $facebook->getUser_Religion();
+							
+							if ($religion != "")
+								echo '<p>glaubt an folgende Gottesvereinigung ' . $religion . '</p>';
+								
+							//Biografie
+							$bio = $facebook->getUser_Biographie();
+							
+							if ($bio != "")
+								echo '<p>behaupten von sich selbst ' . $bio . '</p>';
+								
+							//Sprachen
+							$languagesSize = $facebook->getUser_NumberOfLanguages();
+						
+							if ($languagesSize > 0)
+							{
+								$languages = $facebook->getUser_Languages();
+							
+								if ($languagesSize == 1)
+									echo '<p>kann man in folgender Sprache ansprechen: ';
+								else if ($languagesSize > 1)
+									echo '<p>kann man in folgenden Sprachen ansprechen: ';
+							
+								for ($i = 0; $i < $languagesSize; $i++)
+								{									
+									echo $languages[$i];
+								
+									if ($languagesSize > 1 && ($i+1) < $languagesSize)
+										echo ', ';
+								}
+								echo '</p>';
+							}
+							
+							//Spiele
+							$gamesSize = $facebook->getUser_NumberOfGames();
+							$number = 10;
+							
+							if ($gamesSize < $number)
+								$number = $gamesSize;
+						
+							if ($gamesSize > 0)
+							{
+								$games = $facebook->getUser_Games($number);
+							
+								if ($gamesSize == 1)
+									echo '<p>verzockt sein Geld bei folgendem Spiel: ';
+								else if ($gamesSize > 1)
+									echo '<p>verzockt sein Geld bei folgenden Spielen: ';
+							
+								for ($i = 0; $i < $gamesSize; $i++)
+								{									
+									$splitGame = explode("|", $games[$i]);
+									echo $splitGame[0];
+								
+									if ($number > 1 && ($i+1) < $number)
+										echo ', ';
+								}
+								echo '</p>';
+							}
+							
+							//Likes
+							$likesSize = $facebook->getUser_NumberOfLikes();
+							$number = 20;
+							
+							if ($likesSize < $number)
+								$number = $likesSize;
+						
+							if ($likesSize > 0)
+							{
+								echo '<p>Mag unglaubliche ' . $likesSize . ' Dinge</p>';
+								
+								$likes = $facebook->getUser_Likes($number);
+							
+								if ($likesSize == 1)
+									echo '<p>mag folgende Sache: ';
+								else if ($likesSize > 1)
+									echo '<p>mag folgende Dinge: ';
+							
+								for ($i = 0; $i < $likesSize; $i++)
+								{									
+									$splitLike = explode("|", $likes[$i]);
+									echo $splitLike[0];
+								
+									if ($number > 1 && ($i+1) < $number)
+										echo ', ';
+								}
+								echo '</p>';
+							}
+							
+							//Freunde
+							$friendsSize = $facebook->getUser_NumberOfFriends();
+							$number = 20;
+							
+							if ($friendsSize < $number)
+								$number = $friendsSize;
+						
+							if ($friendsSize > 0)
+							{
+								echo '<p>Hat unglaubliche ' . $friendsSize . ' Freunde (aber nicht in echt :-))</p>';
+								
+								$friends = $facebook->getUser_Friends($number);
+							
+								if ($friendsSize == 1)
+									echo '<p>hat folgenden Freund: ';
+								else if ($friendsSize > 1)
+									echo '<p>hat u.a. folgende Freunde: ';
+							
+								for ($i = 0; $i < $number; $i++)
+								{									
+									echo $friends[$i];
+								
+									if ($number > 1 && ($i+1) < $number)
+										echo ', ';
+								}
+								echo '</p>';
+							}
+							
+							//Interesse
+							$interestsSize = $facebook->getUser_NumberOfInterest();
+							$number = 20;
+							
+							if ($interestsSize < $number)
+								$number = $interestsSize;
+						
+							if ($interestsSize > 0)
+							{
+								echo '<p>Hat unglaubliche ' . $interestsSize . ' Interessen</p>';
+								
+								$interests = $facebook->getUser_Interests($number);
+							
+								if ($interestsSize == 1)
+									echo '<p>hat folgendes Interesse: ';
+								else if ($interestsSize > 1)
+									echo '<p>hat u.a. folgende Interessen: ';
+							
+								for ($i = 0; $i < $number; $i++)
+								{									
+									$splitInterest = explode("|", $interests[$i]);
+									echo $splitInterest[0];
+								
+									if ($number > 1 && ($i+1) < $number)
+										echo ', ';
+								}
+								echo '</p>';
+							}
+							
+							//Aktivitäten
+							$activitiesSize = $facebook->getUser_NumberOfActivities();
+							$number = 20;
+							
+							if ($activitiesSize < $number)
+								$number = $activitiesSize;
+						
+							if ($activitiesSize > 0)
+							{
+								echo '<p>Hat unglaubliche ' . $interestsSize . ' Interessen</p>';
+								
+								$activities = $facebook->getUser_Activities($number);
+							
+								if ($interestsSize == 1)
+									echo '<p>hat folgendes Interesse: ';
+								else if ($interestsSize > 1)
+									echo '<p>hat u.a. folgende Interessen: ';
+							
+								for ($i = 0; $i < $number; $i++)
+								{									
+									$splitActivity = explode("|", $activities[$i]);
+									echo $splitActivity[0];
+								
+									if ($number > 1 && ($i+1) < $number)
+										echo ', ';
+								}
+								echo '</p>';
+							}
+							
+							//Bücher
+							$booksSize = $facebook->getUser_NumberOfBooks();
+							$number = 20;
+							
+							if ($booksSize < $number)
+								$number = $booksSize;
+						
+							if ($booksSize > 0)
+							{
+								$books = $facebook->getUser_Books($number);
+							
+								if ($booksSize == 1)
+									echo '<p>liest folgendes Buch: ';
+								else if ($booksSize > 1)
+									echo '<p>liest u.a. folgende Bücher: ';
+							
+								for ($i = 0; $i < $number; $i++)
+								{									
+									$splitBook = explode("|", $books[$i]);
+									echo $splitBook[0];
+								
+									if ($number > 1 && ($i+1) < $number)
+										echo ', ';
+								}
+								echo '</p>';
+							}
+								
+							//Veranstaltungen
+							$eventsSize = $facebook->getUser_NumberOfEvents();
+							$number = 20;
+							
+							if ($eventsSize < $number)
+								$number = $eventsSize;
+						
+							if ($eventsSize > 0)
+							{
+								$events = $facebook->getUser_Events($number);
+							
+								if ($eventsSize == 1)
+									echo '<p>wurde zu folgendem Event eingeladen: ';
+								else if ($eventsSize > 1)
+									echo '<p>wurde zu folgenden Events eingeladen: ';
+							
+								for ($i = 0; $i < $number; $i++)
+								{									
+									$splitEvent = explode("|", $events[$i]);
+									echo $splitEvent[0] . " in " . $splitEvent[3] . " ist da? " . $splitEvent[4];
+								
+									if ($number > 1 && ($i+1) < $number)
+										echo ', ';
+								}
+								echo '</p>';
+							}
+							
+							//Interesse an
+							$interestsInSize = $facebook->getUser_NumberOfInterestIn();
+							$number = 20;
+							
+							if ($interestsInSize < $number)
+								$number = $interestsInSize;
+						
+							if ($interestsInSize > 0)
+							{
+								$interestsIn = $facebook->getUser_InterestsIn($number);
+							
+								if ($interestsInSize == 1)
+									echo '<p>Interesse an: ';
+								else if ($interestsInSize > 1)
+									echo '<p>Interessen an: ';
+							
+								for ($i = 0; $i < $number; $i++)
+								{									
+									echo $interestsIn[$i];
+								
+									if ($number > 1 && ($i+1) < $number)
+										echo ', ';
+								}
+								echo '</p>';
+							}
+							
+						echo '</div>'; //endtag - profileInfoBottom
 						
 						
 						
 						/*
-				print ("</br>");
-				print ("<b>Gruppen:</b>");
-				print ("</br>");
-				foreach ($groups as $group)
-				{
-						print ($group);
-						print (" | ");
-				}
-				print ("<b>Anzahl Gruppen: </b>" . $facebook->getUser_NumberOfGroups());
-				print ("</br>");
 				
 
 				/*
-				//E-Mail
-				print ("</br>");
-				print ("<b>E-Mail: </b>" . $facebook->getUser_EMail());
-				print ("</br>");
 				
-				//Stadt
-				print ("</br>");
-				print ("<b>Stadt: </b>" . $facebook->getUser_Town());
-				print ("</br>");
-				
-				//Arbeit
-				$works = $facebook->getUser_Works();
-				print ("</br>");
-				print ("<b>Arbeiten:</b>");
-				print ("</br>");
-				foreach ($works as $work)
-				{
-						print ($work);
-						print ("</br>");
-				}
-				print ("<b>Anzahl Arbeiten: </b>" . $facebook->getUser_NumberOfWorks());
-				print ("</br>");
-				
-				//Webseite
-				print ("</br>");
-				print ("<b>Webseite: </b>" . $facebook->getUser_Website());
-				print ("</br>");
-				
-				//Politik
-				print ("</br>");
-				print ("<b>Politik: </b>" . $facebook->getUser_Political());
-				print ("</br>");
-				
-				//Religion
-				print ("</br>");
-				print ("<b>Relgion: </b>" . $facebook->getUser_Religion());
-				print ("</br>");
-				
-				//Sprachen
-				$languages = $facebook->getUser_Languages();
-				print ("</br>");
-				print ("<b>Sprachen:</b>");
-				print ("</br>");
-				foreach ($languages as $language)
-				{
-						print ($language);
-						print (" | ");
-				}
-				print ("<b>Anzahl Sprachen: </b>" . $facebook->getUser_NumberOfLanguages());
-				print ("</br>");        
-				
-				//Spiele
-				$games = $facebook->getUser_Games();
-				print ("</br>");
-				print ("<b>Spiele:</b>");
-				print ("</br>");
-				foreach ($games as $game)
-				{
-						print ($game);
-						print (" | ");
-				}
-				print ("<b>Anzahl Spiele: </b>" . $facebook->getUser_NumberOfGames());
-				print ("</br>");
 				
 
 				
-				//Likes
-				$likes = $facebook->getUser_Likes();
-				print ("</br>");
-				print ("<b>Likes:</b>");
-				print ("</br>");
-				foreach ($likes as $like)
-				{
-						print ($like);
-						print ("</br>");
-				}
-				print ("<b>Anzahl Likes: </b>" . $facebook->getUser_NumberOfLikes());
-				print ("</br>");
+
 				
-				//Freunde
-				$friends = $facebook->getUser_Friends();
-				print ("</br>");
-				print ("<b>Freunde:</b>");
-				print ("</br>");
-				foreach ($friends as $friend)
-				{
-						print ($friend);
-						print (" | ");
-				}
-				print ("<b>Anzahl Freunde: </b>" . $facebook->getUser_NumberOfFriends());
+
 				
-				//Interessen
-				$interests = $facebook->getUser_Interests();
-				print ("</br>");
-				print ("<b>Interessen:</b>");
-				print ("</br>");
-				foreach ($interests as $interest)
-				{
-						print ($interest);
-						print (" | ");
-				}
-				print ("<b>Anzahl Interessen: </b>" . $facebook->getUser_NumberOfInterest());
+
+			     
 				
-				//Aktivitäten
-				$activities = $facebook->getUser_Activities();
-				print ("</br>");
-				print ("<b>Aktivitäten:</b>");
-				print ("</br>");
-				foreach ($activities as $activity)
-				{
-						print ($activity);
-						print (" | ");
-				}
-				print ("<b>Anzahl Aktivitäten: </b>" . $facebook->getUser_NumberOfActivities());
 				
-				//Bücher
-				$books = $facebook->getUser_Books();
-				print ("</br>");
-				print ("<b>Bücher:</b>");
-				print ("</br>");
-				foreach ($books as $book)
-				{
-						print ($book);
-						print (" | ");
-				}
-				print ("<b>Anzahl Bücher: </b>" . $facebook->getUser_NumberOfBooks());
-				
-				//Events
-				$events = $facebook->getUser_Events();
-				print ("</br>");
-				print ("<b>Events:</b>");
-				print ("</br>");
-				foreach ($events as $event)
-				{
-						print ($event);
-						print ("</br>");
-				}
-				print ("<b>Anzahl Events: </b>" . $facebook->getUser_NumberOfEvents());
-				
+
+
+
 				//Interessen an
 				$interests = $facebook->getUser_InterestsIn();
 				print ("</br>");
@@ -282,12 +456,9 @@
 				}
 				print ("<b>Anzahl User-Checkins: </b>" . $sr->convertUtcToGermanDate($facebook->getUser_NumberOfCheckins()));
 				
-				//Biografie
-				print ("</br>");
-				print ("<b>Biografie: </b>" . $facebook->getUser_Biographie());
-				print ("</br>"); */
+ */
 
-				echo '</div>';		
+				//echo '</div>';		
 				echo '</td>';
 				echo '</tr>';
 				echo '</table>';

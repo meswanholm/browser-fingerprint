@@ -14,26 +14,42 @@ body {
 	
 }	
 
+p {
+	font-family: Impact, Verdana, Arial;
+	font-size: 16px;
+}
+
+img {
+	min-height: 200px;
+	min-width: 100px;
+}
+
 #image {
 	float: right;
-	margin-right: 5em;
-	box-shadow: 0.000em 0.0000em 0.700em #000000;			/*Schlagschatten*/
-	-moz-box-shadow: 0.000em 0.0000em 0.700em #000000;		/* Firefox */
-	-webkit-box-shadow: 0.000em 0.0000em 0.700em #000000; 	/* Chrome */
-	border: 0.6em solid #ffffff;
-	border-bottom: 1.5em solid #ffffff;
-	filter: gray; 											/* GRAU - IE */
-	filter: url(filters.svg#grayscale); 					/* Firefox */
-    -webkit-filter: grayscale(1); 							/* Chrome */
+	margin-right: 300px;
+	box-shadow: 0px 0px 8px #000000;					/*Schlagschatten*/
+	-moz-box-shadow: 0px 0px 8px #000000;				/* Firefox */
+	-webkit-box-shadow: 0px 0px 8px #000000; 			/* Chrome */
+	border: 7px solid #ffffff;
+	border-bottom: 18px solid #ffffff;
+	filter: gray; 										/* GRAU - IE */
+	filter: url(filters.svg#grayscale); 				/* Firefox */
+    -webkit-filter: grayscale(1); 						/* Chrome */
 }
 
 #top {
 	height:228px;
 	width:900px;
 	background:url("images/1.jpg");
-	box-shadow: 0.625em 0.625em 0.500em #333;			/*Schlagschatten*/
-	-moz-box-shadow: 0.625em 0.625em 0.500em #333; 		/* Firefox */
-	-webkit-box-shadow: 0.625em 0.625em 0.500em #333; 	/* Chrome */
+	box-shadow: 10px 10px 8px #333;						/*Schlagschatten*/
+	-moz-box-shadow: 10px 10px 8px #333; 				/* Firefox */
+	-webkit-box-shadow: 10px 10px 8px #333; 			/* Chrome */
+}
+
+#fbName {
+	font-size: 50px;
+	-moz-transform: rotate(-20deg);
+	-webkit-transform: rotate(-20deg);
 }
 
 
@@ -48,11 +64,15 @@ body {
 	max-width: 900px;
 }
 
-.contentTable {
-	font-size: 0.815em;				
+#profileInfoTop, #profileInfoBottom  {
+	font-size: 13px;				
 	font-family: verdana;
 	color: #4d4d4d;								/* Schriftfarbe */
 	padding: 0 10px 0 10px;						/* innere Abstände oben/rechts/unten/links */
+}
+
+#profileInfoBottom {
+	margin-top: 350px;
 }
 
 #bottom {
