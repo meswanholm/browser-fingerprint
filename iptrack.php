@@ -7,9 +7,13 @@
 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 </head>
 <body text="#000000" bgcolor="#FFFFFF" link="#FF0000" alink="#FF0000" vlink="#FF0000">
+
+<div style="background-image:url(images/omm_gruen.jpg); background-repeat:repeat;float:left;">
+</div>
+
+
 <h1> Was wir über dich wissen... </h1>
-<a <div align="right"><img src="images\omm_orange_trans.png" border="0" Alt="Online Medien Management"></a>
-<p><img src="images\omm_orange_trans.png" alt="OMM"></p>
+<a <div align="right"><img src="images/omm_orange_trans.png" border="0" Alt="Online Medien Management"></a>
 <?php
 echo "<br> Angesprochener Server: ";
 $host = $_SERVER["HTTP_HOST"];
@@ -23,8 +27,10 @@ echo "<br> Dein System: ";
 echo $agent;
 echo "<br> Deine IP Addresse: ";
 echo $addr;
+echo "<br>";
 ?>
 <div id="pos" style="width:600px; height:400px;">
+Du befindest dich in dieser Region:
         Deine Position wird ermittelt...
     </div>
     
