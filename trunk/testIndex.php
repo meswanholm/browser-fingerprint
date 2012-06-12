@@ -409,6 +409,25 @@
 								echo '</p>';
 							}
 							
+							// TEST WERTEINSTUFUNG NUTZER
+							$friendsFactor = array(0, 100, 300);	//Anzahl Freunde
+							$likesFactor = array(0, 50, 365);		//Anzahl Likes
+							$gamesFactor = array(0, 1);				// Anzahl Spiele
+							
+							if ($friendsSize >= $friendsFactor[2] && $likesSize >= $likesFactor[2] && $gamesSize >= $gamesFactor[1])
+							{
+								echo '<p>Nutzer-Wert nach dem Börsengang: 319 USD';							
+							}
+							else if ($friendsSize <= $friendsFactor[1] && $likesSize <= $likesFactor[1] && $gamesSize <= $gamesFactor[0])
+							{
+								echo '<p>Nutzer-Wert nach dem Börsengang: 59 USD';	
+							}
+							else 
+							{
+								echo '<p>Nutzer-Wert nach dem Börsengang: 219 USD';	
+							}
+							echo ', Angaben in Anlehnung nach: https://goprivate.abine.com';
+ 							
 						echo '</div>'; //endtag - profileInfoBottom
 						
 						
