@@ -110,7 +110,7 @@
 							$email = $facebook->getUser_EMail();
 							
 							if ($email != "")
-								echo '<p>Kopfgeldforderung an ' . $email . '</p>';
+								echo '<p>Auch unter dem Pseudonym ' . $email . ' unterwegs</p>';
 								
 							//Stadt
 							$town = $facebook->getUser_Town();
@@ -252,7 +252,7 @@
 						
 							if ($friendsSize > 0)
 							{
-								echo '<p>Hat unglaubliche ' . $friendsSize . ' Freunde (aber nicht in echt :-))</p>';
+								echo '<p>Besitzt Kontakte zu ' . $friendsSize . ' Personen</p>';
 								
 								$friends = $facebook->getUser_Friends($number);
 							
@@ -416,11 +416,11 @@
 							
 							if ($friendsSize >= $friendsFactor[2] && $likesSize >= $likesFactor[2] && $gamesSize >= $gamesFactor[1])
 							{
-								echo '<p>Nutzer-Wert nach dem Börsengang: 319 USD';							
+								echo '<p>Kopfgeldzahlung in Höhe von 319 USD durch Facebook';							
 							}
 							else if ($friendsSize <= $friendsFactor[1] && $likesSize <= $likesFactor[1] && $gamesSize <= $gamesFactor[0])
 							{
-								echo '<p>Nutzer-Wert nach dem Börsengang: 59 USD';	
+								echo '<p>Kopfgeldzahlung in Höhe von 59 USD durch Facebook';	
 							}
 							else 
 							{
