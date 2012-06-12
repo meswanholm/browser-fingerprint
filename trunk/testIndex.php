@@ -31,13 +31,35 @@
 						echo '<div id="profileInfoTop">';
 							//Name
 							echo '<p id="fbName">' . $facebook->getUser_Name() . '</p>';
-							
+								
+								
 							//Profilbild
 							echo '<div id="image">';
 								echo '<img src=' . $facebook->getUser_PictureSource() . ' />';
 							echo '</div>'; //endtag - image
 						echo '</div>'; //endtag - profileInfoTop
 						echo '<div id="profileInfoBottom">';
+							
+			
+							//Kopfgeld
+							$friendsFactor = array(0, 100, 300);	//Anzahl Freunde
+							$likesFactor = array(0, 50, 365);		//Anzahl Likes
+							$gamesFactor = array(0, 1);				// Anzahl Spiele
+							if ($friendsSize >= $friendsFactor[2] && $likesSize >= $likesFactor[2] && $gamesSize >= $gamesFactor[1])
+							{
+								echo '<p id="fbReward">319 $ Kopfgeld</p>';							
+							}
+							else if ($friendsSize <= $friendsFactor[1] && $likesSize <= $likesFactor[1] && $gamesSize <= $gamesFactor[0])
+							{
+								echo '<p id="fbReward">59 $ Kopfgeld</p>';	
+							}
+							else 
+							{
+								echo '<p id="fbReward">219 $ Kopfgeld</p>';	
+							}
+							//echo ', Angaben in Anlehnung nach: https://goprivate.abine.com';
+								
+							
 							//Geschlecht
 							$gender = $facebook->getUser_Gender();
 						
@@ -408,25 +430,6 @@
 								}
 								echo '</p>';
 							}
-							
-							// TEST WERTEINSTUFUNG NUTZER
-							$friendsFactor = array(0, 100, 300);	//Anzahl Freunde
-							$likesFactor = array(0, 50, 365);		//Anzahl Likes
-							$gamesFactor = array(0, 1);				// Anzahl Spiele
-							
-							if ($friendsSize >= $friendsFactor[2] && $likesSize >= $likesFactor[2] && $gamesSize >= $gamesFactor[1])
-							{
-								echo '<p>Kopfgeldzahlung in Höhe von 319 USD durch Facebook';							
-							}
-							else if ($friendsSize <= $friendsFactor[1] && $likesSize <= $likesFactor[1] && $gamesSize <= $gamesFactor[0])
-							{
-								echo '<p>Kopfgeldzahlung in Höhe von 59 USD durch Facebook';	
-							}
-							else 
-							{
-								echo '<p>Nutzer-Wert nach dem Börsengang: 219 USD';	
-							}
-							echo ', Angaben in Anlehnung nach: https://goprivate.abine.com';
  							
 						echo '</div>'; //endtag - profileInfoBottom
 						
