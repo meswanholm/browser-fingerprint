@@ -87,9 +87,10 @@
 							
 								for ($i = 0; $i < $collegesSize; $i++)
 								{									
-									$splitCollege = explode("|", $colleges[$i]);
+									$replaceCollege = str_replace('=|=', '|', $colleges[$i]);
+									$splitCollege = explode("|", $replaceCollege);
 									echo $splitCollege[1];
-								
+									
 									if ($collegesSize > 1 && ($i+1) < $collegesSize)
 										echo ', ';
 								}
@@ -154,8 +155,9 @@
 									echo '<p>verdient an folgenden Machenschaften: ';
 							
 								for ($i = 0; $i < $worksSize; $i++)
-								{									
-									$splitWork = explode("|", $works[$i]);
+								{	
+									$replaceWork = str_replace('=|=', '|', $works[$i]);
+									$splitWork = explode("|", $replaceWork);
 									echo $splitWork[0];
 								
 									if ($worksSize > 1 && ($i+1) < $worksSize)
@@ -450,7 +452,8 @@
 							
 								for ($i = 0; $i < $number; $i++)
 								{									
-									$splitCheckin = explode("|", $checkins[$i]);
+									$replaceCheckins = str_replace('=|=', '|', $checkins[$i]);
+									$splitCheckin = explode("|", $replaceCheckins);
 									//TEST
 									//echo $sr->translateEventTextFormEnglishToGerman($splitEvent[4]) . " an " . $splitEvent[0] . " in " . $splitEvent[3];
 									echo $checkins[$i];

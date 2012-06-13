@@ -276,7 +276,7 @@
 				for ($i = 0; $i < $collegesSize; $i++) 
 				{
 					$college = $colleges[$i]; 
-					$allColleges[] = $this->serviceRoutines->convertSpecialSign($college['type'] . "|" . $college['school']['name']);		
+					$allColleges[] = $this->serviceRoutines->convertSpecialSign($college['type'] . "=|=" . $college['school']['name']);		
 				};
 			}
 			
@@ -381,8 +381,8 @@
 				for ($i = 0; $i < $gamesSize; $i++) 
 				{ 
 					$game = $gamesData[$i]; 
-					//FORMAT: name|category|created_time
-					$allGames[] = $this->serviceRoutines->convertSpecialSign($game['name'] . "|" . $game['category'] . "|" . $game['created_time']); // 
+					//FORMAT: name=|=category=|=created_time
+					$allGames[] = $this->serviceRoutines->convertSpecialSign($game['name'] . "=|=" . $game['category'] . "=|=" . $game['created_time']); // 
 				}; 
 			}
 			
@@ -418,8 +418,8 @@
 				for ($i = 0; $i < $likesSize; $i++) 
 				{
 					$like = $likesData[$i]; 
-					//FORMAT: name|category|create_time
-					$allLikes[] = $this->serviceRoutines->convertSpecialSign($like['name'] . "|" . $like['category'] . "|" . $like['create_time']);
+					//FORMAT: name=|=category=|=create_time
+					$allLikes[] = $this->serviceRoutines->convertSpecialSign($like['name'] . "=|=" . $like['category'] . "=|=" . $like['create_time']);
 				}; 
 			}
 			
@@ -455,8 +455,8 @@
 				for ($i = 0; $i < $interestsSize; $i++) 
 				{
 					$interest = $interestsData[$i]; 
-					//FORMAT: name|category|create_time
-					$allInterests[] = $this->serviceRoutines->convertSpecialSign($interest['name'] . "|" . $interest['category'] . "|" . $interest['create_time']);
+					//FORMAT: name=|=category=|=create_time
+					$allInterests[] = $this->serviceRoutines->convertSpecialSign($interest['name'] . "=|=" . $interest['category'] . "=|=" . $interest['create_time']);
 				}; 
 			}
 			
@@ -492,8 +492,8 @@
 				for ($i = 0; $i < $activitiesSize; $i++) 
 				{
 					$activity = $activitiesData[$i]; 
-					//FORMAT: name|category|create_time
-					$allActivities[] = $this->serviceRoutines->convertSpecialSign($activity['name'] . "|" . $activity['category'] . "|" . $activity['create_time']);
+					//FORMAT: name=|=category=|=create_time
+					$allActivities[] = $this->serviceRoutines->convertSpecialSign($activity['name'] . "=|=" . $activity['category'] . "=|=" . $activity['create_time']);
 				}; 
 			}
 			
@@ -529,8 +529,8 @@
 				for ($i = 0; $i < $booksSize; $i++) 
 				{
 					$book = $booksData[$i]; 
-					//FORMAT: name|category|create_time
-					$allBooks[] = $this->serviceRoutines->convertSpecialSign($book['name'] . "|" . $book['category'] . "|" . $book['create_time']);
+					//FORMAT: name=|=category=|=create_time
+					$allBooks[] = $this->serviceRoutines->convertSpecialSign($book['name'] . "=|=" . $book['category'] . "=|=" . $book['create_time']);
 				}; 
 			}
 			
@@ -566,8 +566,8 @@
 				for ($i = 0; $i < $eventsSize; $i++) 
 				{
 					$event = $eventsData[$i];
-					//FORMAT: name|start_time|end_time|location|rsvp_status
-					$allEvents[] = $this->serviceRoutines->convertSpecialSign($event['name'] . "|" . $event['start_time'] . "|" . $event['end_time'] . "|" . $event['location'] . "|" . $event['rsvp_status']);
+					//FORMAT: name=|=start_time=|=end_time=|=location=|=rsvp_status
+					$allEvents[] = $this->serviceRoutines->convertSpecialSign($event['name'] . "=|=" . $event['start_time'] . "=|=" . $event['end_time'] . "=|=" . $event['location'] . "=|=" . $event['rsvp_status']);
 				}; 
 			}
 			
@@ -615,21 +615,21 @@
 					for ($n = 0; $n < $checkin_tagsSize; $n++)
 					{
 						if ($checkin_tagsInput == "")
-							$checkin_tagsInput = $checkin_tags[$n]['name']; //FORMAT: user_name;user_name...
+							$checkin_tagsInput = $checkin_tags[$n]['name']; //FORMAT: user_name%|%user_name...
 						else
-							$checkin_tagsInput = $checkin_tagsInput . ";" . $checkin_tags[$n]['name']; //FORMAT: user_name;user_name...
+							$checkin_tagsInput = $checkin_tagsInput . "%|%" . $checkin_tags[$n]['name']; //FORMAT: user_name%|%user_name...
 					}
 					
 					for ($z = 0; $z < $checkin_commentsSize; $z++)
 					{
 						if ($checkin_commentsInput == "")
-							$checkin_commentsInput = $checkin_comments[$z]['from']['name'] . "," . $checkin_comments[$z]['message'] . "," . $checkin_comments[$z]['created_time']; //FORMAT: user_comment;user_comment... -> user_name,message,created_time
+							$checkin_commentsInput = $checkin_comments[$z]['from']['name'] . "?|?" . $checkin_comments[$z]['message'] . "?|?" . $checkin_comments[$z]['created_time']; //FORMAT: user_comment%|%user_comment... -> user_name?|?message?|?created_time
 						else
 							$checkin_commentsInput = $checkin_commentsInput . ";" . ($checkin_comments[$z]['from']['name'] . "," . $checkin_comments[$z]['message'] . "," . $checkin_comments[$z]['created_time']); //FORMAT: user_comment;user_comment... -> user_name,message,created_time
 					}
 					
-					//FORMAT: user_name|place_name|place_street|place_city|place_country|place_zip|application_name|created_time|checkin_tags|checkin_comments
-					$allCheckins[] = $this->serviceRoutines->convertSpecialSign($checkin_from['name'] . "|" . $checkin_place['name'] . "|" . $checkin_place['location']['street'] . "|" . $checkin_place['location']['city'] . "|" . $checkin_place['location']['country'] . "|" . $checkin_place['location']['zip'] . "|" . $checkin['application']['name'] . "|" . $checkin['created_time'] . "|" .  $checkin_tagsInput . "|" . $checkin_commentsInput); 
+					//FORMAT: user_name=|=place_name=|=place_street=|=place_city=|=place_country=|=place_zip=|=application_name=|=created_time=|=checkin_tags=|=checkin_comments
+					$allCheckins[] = $this->serviceRoutines->convertSpecialSign($checkin_from['name'] . "=|=" . $checkin_place['name'] . "=|=" . $checkin_place['location']['street'] . "=|=" . $checkin_place['location']['city'] . "=|=" . $checkin_place['location']['country'] . "=|=" . $checkin_place['location']['zip'] . "=|=" . $checkin['application']['name'] . "=|=" . $checkin['created_time'] . "=|=" .  $checkin_tagsInput . "=|=" . $checkin_commentsInput); 
 				};
 			}
 			
