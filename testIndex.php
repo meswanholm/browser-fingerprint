@@ -461,8 +461,34 @@
 									$checkins[$i] = str_replace("=|=", "|", $checkins[$i]);
 									$splitCheckin = explode("|", $checkins[$i]);
 									//TEST
+									if ($splitCheckin[8] != "")
+									{
+										$splitCheckin[8] = str_replace("%$%", "|", $splitCheckin[8]);
+										$splitCheckinTags = explode("|", $splitCheckin[8]);
+										
+										for ($z = 0; $z < sizeof($splitCheckinTags); $z++)
+										{
+											echo "war dabei: " . $splitCheckinTags[$z];
+										}
+									}
+									if ($splitCheckin[9] != "")
+									{
+										$splitCheckin[9] = str_replace("%$%", "|", $splitCheckin[9]); 
+										$splitCheckinComments = explode("|", $splitCheckin[9]);
+									}
+
+									for ($n = 0; $n < sizeof($splitCheckinComments); $n++)
+									{
+										$splitCheckinComments[$n] = str_replace("?%?", "|", $splitCheckinComments[$n]);
+										var_dump($splitCheckinComments[$n]);
+										$splitComment = explode("|", $splitCheckinComments[$n]);
+										
+										echo $splitComment[0] . " schrieb " . $splitComment[1] . " am " . $splitComment[2];
+									}
+										
+									
 									//echo $sr->translateEventTextFormEnglishToGerman($splitEvent[4]) . " an " . $splitEvent[0] . " in " . $splitEvent[3];
-									echo $checkins[$i];
+									//echo $checkins[$i];
 								
 								
 									if ($number > 1 && ($i+1) < $number)
