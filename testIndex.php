@@ -31,8 +31,8 @@
 						echo '<div id="profileInfoTop">';
 							//Name
 							echo '<p id="fbName">' . $facebook->getUser_Name() . '</p>';
-								
-								
+							
+							
 							//Profilbild
 							echo '<div id="image">';
 								echo '<img src=' . $facebook->getUser_PictureSource() . ' />';
@@ -40,7 +40,6 @@
 						echo '</div>'; //endtag - profileInfoTop
 						echo '<div id="profileInfoBottom">';
 							
-			
 							//Kopfgeld
 							$friendsFactor = array(0, 100, 300);	//Anzahl Freunde
 							$likesFactor = array(0, 50, 365);		//Anzahl Likes
@@ -58,7 +57,9 @@
 								echo '<p id="fbReward">219 $ Kopfgeld</p>';	
 							}
 							//echo ', Angaben in Anlehnung nach: https://goprivate.abine.com';
-								
+							
+							
+							
 							
 							//Geschlecht
 							$gender = $facebook->getUser_Gender();
@@ -331,14 +332,14 @@
 						
 							if ($activitiesSize > 0)
 							{
-								echo '<p>Hat unglaubliche ' . $interestsSize . ' Interessen</p>';
+								echo '<p>Hat unglaubliche ' . $activitiesSize . ' Aktivitäten</p>';
 								
 								$activities = $facebook->getUser_Activities($number);
 							
 								if ($interestsSize == 1)
-									echo '<p>hat folgendes Interesse: ';
+									echo '<p>geht folgender Aktivität nach: ';
 								else if ($interestsSize > 1)
-									echo '<p>hat u.a. folgende Interessen: ';
+									echo '<p>geht u.a. folgenden Aktivitäten nach: ';
 							
 								for ($i = 0; $i < $number; $i++)
 								{									
@@ -397,7 +398,7 @@
 								for ($i = 0; $i < $number; $i++)
 								{									
 									$splitEvent = explode("|", $events[$i]);
-									echo $sr->translateEventTextFormEnglishToGerman($splitEvent[4]) . " an " . $splitEvent[0] . " in " . $splitEvent[3];
+									echo $splitEvent[0] . " in " . $splitEvent[3] . " ist da? " . $sr->translateEventTextFormEnglishToGerman($splitEvent[4]);
 								
 									if ($number > 1 && ($i+1) < $number)
 										echo ', ';
