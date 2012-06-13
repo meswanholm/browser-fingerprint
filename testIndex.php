@@ -145,7 +145,7 @@
 						
 							if ($worksSize > 0)
 							{
-								$works = $facebook->$facebook->getUser_Works();
+								$works = $facebook->getUser_Works();
 							
 								if ($worksSize == 1)
 									echo '<p>verdient an folgender Machenschaft: ';
@@ -155,7 +155,7 @@
 								for ($i = 0; $i < $worksSize; $i++)
 								{									
 									$splitWork = explode("|", $works[$i]);
-									echo $splitWork[1];
+									echo $splitWork[0];
 								
 									if ($worksSize > 1 && ($i+1) < $worksSize)
 										echo ', ';
@@ -397,7 +397,7 @@
 								for ($i = 0; $i < $number; $i++)
 								{									
 									$splitEvent = explode("|", $events[$i]);
-									echo $splitEvent[0] . " in " . $splitEvent[3] . " ist da? " . $sr->translateEventTextFormEnglishToGerman($splitEvent[4]);
+									echo $sr->translateEventTextFormEnglishToGerman($splitEvent[4]) . " an " . $splitEvent[0] . " in " . $splitEvent[3];
 								
 									if ($number > 1 && ($i+1) < $number)
 										echo ', ';
