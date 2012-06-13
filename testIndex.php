@@ -431,6 +431,36 @@
 								}
 								echo '</p>';
 							}
+							
+							//Checkins
+							$checkinsSize = $facebook->getUser_NumberOfCheckins();
+							$number = 1;
+							
+							if ($checkinsSize < $number)
+								$number = $checkinsSize;
+													
+							if ($checkinsSize > 0)
+							{
+								$checkins = $facebook->getUser_Checkins($number);
+							
+								if ($checkinsSize == 1)
+									echo '<p>folgendes Checkin vorhanden: ';
+								else if ($checkinsSize > 1)
+									echo '<p>folgende Checkins vorhanden: ';
+							
+								for ($i = 0; $i < $number; $i++)
+								{									
+									$splitCheckin = explode("|", $checkins[$i]);
+									//TEST
+									//echo $sr->translateEventTextFormEnglishToGerman($splitEvent[4]) . " an " . $splitEvent[0] . " in " . $splitEvent[3];
+									echo $checkins[$i];
+								
+								
+									if ($number > 1 && ($i+1) < $number)
+										echo ', ';
+								}
+								echo '</p>';
+							}
  							
 						echo '</div>'; //endtag - profileInfoBottom
 						
