@@ -87,10 +87,10 @@
 							
 								for ($i = 0; $i < $collegesSize; $i++)
 								{									
-									$replaceCollege = str_replace('=|=', '|', $colleges[$i]);
-									$splitCollege = explode("|", $replaceCollege);
+									$colleges[$i] = str_replace("=|=", "|", $colleges[$i]);
+									$splitCollege = explode("|", $colleges[$i]);
 									echo $splitCollege[1];
-									
+								
 									if ($collegesSize > 1 && ($i+1) < $collegesSize)
 										echo ', ';
 								}
@@ -155,9 +155,9 @@
 									echo '<p>verdient an folgenden Machenschaften: ';
 							
 								for ($i = 0; $i < $worksSize; $i++)
-								{	
-									$replaceWork = str_replace('=|=', '|', $works[$i]);
-									$splitWork = explode("|", $replaceWork);
+								{									
+									$works[$i] = str_replace("=|=", "|", $works[$i]);
+									$splitWork = explode("|", $works[$i]);
 									echo $splitWork[0];
 								
 									if ($worksSize > 1 && ($i+1) < $worksSize)
@@ -230,6 +230,7 @@
 							
 								for ($i = 0; $i < $gamesSize; $i++)
 								{									
+									$games[$i] = str_replace("=|=", "|", $games[$i]);
 									$splitGame = explode("|", $games[$i]);
 									echo $splitGame[0];
 								
@@ -259,6 +260,7 @@
 							
 								for ($i = 0; $i < $likesSize; $i++)
 								{									
+									$likes[$i] = str_replace("=|=", "|", $likes[$i]);
 									$splitLike = explode("|", $likes[$i]);
 									echo $splitLike[0];
 								
@@ -316,6 +318,7 @@
 							
 								for ($i = 0; $i < $number; $i++)
 								{									
+									$interests[$i] = str_replace("=|=", "|", $interests[$i]);
 									$splitInterest = explode("|", $interests[$i]);
 									echo $splitInterest[0];
 								
@@ -345,6 +348,7 @@
 							
 								for ($i = 0; $i < $number; $i++)
 								{									
+									$activities[$i] = str_replace("=|=", "|", $activities[$i]);
 									$splitActivity = explode("|", $activities[$i]);
 									echo $splitActivity[0];
 								
@@ -372,6 +376,7 @@
 							
 								for ($i = 0; $i < $number; $i++)
 								{									
+									$books[$i] = str_replace("=|=", "|", $books[$i]);
 									$splitBook = explode("|", $books[$i]);
 									echo $splitBook[0];
 								
@@ -399,6 +404,7 @@
 							
 								for ($i = 0; $i < $number; $i++)
 								{									
+									$events[$i] = str_replace("=|=", "|", $events[$i]);
 									$splitEvent = explode("|", $events[$i]);
 									echo $sr->translateEventTextFormEnglishToGerman($splitEvent[4]) . " an " . $splitEvent[0] . " in " . $splitEvent[3];
 								
@@ -452,8 +458,8 @@
 							
 								for ($i = 0; $i < $number; $i++)
 								{									
-									$replaceCheckins = str_replace('=|=', '|', $checkins[$i]);
-									$splitCheckin = explode("|", $replaceCheckins);
+									$checkins[$i] = str_replace("=|=", "|", $checkins[$i]);
+									$splitCheckin = explode("|", $checkins[$i]);
 									//TEST
 									//echo $sr->translateEventTextFormEnglishToGerman($splitEvent[4]) . " an " . $splitEvent[0] . " in " . $splitEvent[3];
 									echo $checkins[$i];
