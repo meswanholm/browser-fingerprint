@@ -617,15 +617,15 @@
 						if ($checkin_tagsInput == "")
 							$checkin_tagsInput = $checkin_tags[$n]['name']; //FORMAT: user_name%|%user_name...
 						else
-							$checkin_tagsInput = $checkin_tagsInput . "%|%" . $checkin_tags[$n]['name']; //FORMAT: user_name%|%user_name...
+							$checkin_tagsInput = $checkin_tagsInput . "%$%" . $checkin_tags[$n]['name']; //FORMAT: user_name%|%user_name...
 					}
 					
 					for ($z = 0; $z < $checkin_commentsSize; $z++)
 					{
 						if ($checkin_commentsInput == "")
-							$checkin_commentsInput = $checkin_comments[$z]['from']['name'] . "?|?" . $checkin_comments[$z]['message'] . "?|?" . $checkin_comments[$z]['created_time']; //FORMAT: user_comment%|%user_comment... -> user_name?|?message?|?created_time
+							$checkin_commentsInput = $checkin_comments[$z]['from']['name'] . "?$?" . $checkin_comments[$z]['message'] . "?$?" . $checkin_comments[$z]['created_time']; //FORMAT: user_comment%|%user_comment... -> user_name?|?message?|?created_time
 						else
-							$checkin_commentsInput = $checkin_commentsInput . "%|%" . ($checkin_comments[$z]['from']['name'] . "?|?" . $checkin_comments[$z]['message'] . "?|?" . $checkin_comments[$z]['created_time']); //FORMAT: user_comment;user_comment... -> user_name,message,created_time
+							$checkin_commentsInput = $checkin_commentsInput . "%$%" . ($checkin_comments[$z]['from']['name'] . "?$?" . $checkin_comments[$z]['message'] . "?$?" . $checkin_comments[$z]['created_time']); //FORMAT: user_comment;user_comment... -> user_name,message,created_time
 					}
 					
 					//FORMAT: user_name=|=place_name=|=place_street=|=place_city=|=place_country=|=place_zip=|=application_name=|=created_time=|=checkin_tags=|=checkin_comments
