@@ -504,7 +504,7 @@
 											echo '</br>';
 											
 											if ($checkinComment[0] != "")
-												echo $checkinComment[0] . " meinte dazu ";
+												echo $checkinComment[0] . " meinte dazu: ";
 											if ($checkinComment[1] != "")
 												echo $checkinComment[1];	
 										}
