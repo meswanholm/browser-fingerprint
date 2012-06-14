@@ -36,9 +36,9 @@
 		
 		public function convertGenderFromEnglishToGerman($value)
 		{
-			if ($value == 'male')
+			if (strtoupper($value) == 'MALE')
 				return "m&aumlnnlich"; 
-			else if ($value == 'female')
+			else if (strtoupper($value) == 'FEMALE')
 				return "weiblich";
 					
 			return "";
@@ -46,12 +46,36 @@
 		
 		public function translateEventTextFormEnglishToGerman($value)
 		{
-			if ($value == "unsure")
+			if (strtoupper($value) == "UNSURE")
 				return "nimmt nicht teil";
-			else if ($value == "attending")
+			else if (strtoupper($value) == "ATTENDING")
 				return "nimmt sicher teil";
 				
 			//abgesagte Termine können nicht ermittelt werden.
+		}
+		
+		public function translateRelationshipFormEnglishToGerman($value)
+		{
+			if (strtoupper($value) == "IN A RELATIONSHIP")
+				return "In einer Beziehung";
+			else if (strtoupper($value) == "SINGLE")
+				return "Single";
+			else if (strtoupper($value) == "ENGAGED")
+				return "Verlobt";
+			else if (strtoupper($value) == "MARRIED")
+				return "Verheiratet";
+			else if (strtoupper($value) == "IT'S COMPLICATED")
+				return "Es ist kompliziert";
+			else if (strtoupper($value) == "IN AN OPEN RELATIONSHIP")
+				return "In einer offenen Beziehung";
+			else if (strtoupper($value) == "WIDOWED")
+				return "Verwitwet";
+			else if (strtoupper($value) == "SEPARATED")
+				return "Getrennt";
+			else if (strtoupper($value) == "DIVORCED")
+				return "Geschieden";
+			else
+				return $value;
 		}
 	}
 ?>

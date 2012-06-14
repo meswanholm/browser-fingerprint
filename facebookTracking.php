@@ -140,7 +140,7 @@
 		public function getUser_Town()
 		{//Stadt
 			if ($this->user_profile['hometown'] != "")
-				return $this->serviceRoutines->convertSpecialSign($this->user_profile['hometown']);
+				return $this->serviceRoutines->convertSpecialSign($this->user_profile['hometown']['name']);
 				
 			return "";
 		}
