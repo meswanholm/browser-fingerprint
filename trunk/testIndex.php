@@ -101,9 +101,8 @@
 							$relationShip = $facebook->getUser_RelationshipStatus();
 							
 							if ($relationShip != "")
-								echo '<p>Beziehung: ' . $relationShip . '</p>';
+								echo '<p>Beziehung: ' . $sr->translateRelationshipFormEnglishToGerman($relationShip) . '</p>';
 							
-						
 							//Gruppen
 							$groupsSize = $facebook->getUser_NumberOfGroups();
 							$number = 10;
@@ -341,9 +340,9 @@
 								
 								$activities = $facebook->getUser_Activities($number);
 							
-								if ($interestsSize == 1)
+								if ($activitiesSize == 1)
 									echo '<p>geht folgender Aktivität nach: ';
-								else if ($interestsSize > 1)
+								else if ($activitiesSize > 1)
 									echo '<p>geht u.a. folgenden Aktivitäten nach: ';
 							
 								for ($i = 0; $i < $number; $i++)
