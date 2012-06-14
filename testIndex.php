@@ -81,7 +81,7 @@
 								$colleges = $facebook->getUser_Colleges();
 							
 								if ($collegesSize == 1)
-									echo '<p>vermutlich an folgenden Bildungseinrichtung anzutreffen: ';
+									echo '<p>vermutlich an folgender Bildungseinrichtung anzutreffen: ';
 								else if ($collegesSize > 1)
 									echo '<p>vermutlich an folgenden Bildungseinrichtungen anzutreffen: ';
 							
@@ -442,7 +442,11 @@
 							
 							//Checkins
 							$checkinsSize = $facebook->getUser_NumberOfCheckins();
-							$number = 1;
+							$number = 3;
+							
+							//FOR TESTING
+							//$testVar = array();
+							//$testVar[0] = "Till Nessalk=|=Theodor-Heuss-Straße=|=Theodor-Heuss-Straße=|=Stuttgart=|=Germany=|=70173=|=Facebook for iPhone=|=2012-03-14T23:49:25+0000=|==|=Vivien Köhler?$?komm mal lieber ind nobelstr ;)?$?2012-03-15T07:58:02+0000%$%Till Nessalk?$?Hehe, wenn S-Bar Party is vllt ;) Wobei Di nachmittag komm ich au zu Englisch, da kömma wad futtern gehn ;D?$?2012-03-15T11:06:36+0000";
 							
 							if ($checkinsSize < $number)
 								$number = $checkinsSize;
@@ -452,101 +456,64 @@
 								$checkins = $facebook->getUser_Checkins($number);
 							
 								if ($checkinsSize == 1)
-									echo '<p>folgendes Checkin vorhanden: ';
+									echo '<p>folgender Ort bekannt: ';
 								else if ($checkinsSize > 1)
-									echo '<p>folgende Checkins vorhanden: ';
+									echo '<p>folgende Orte bekannt: ';
 							
 								for ($i = 0; $i < $number; $i++)
 								{									
+									if ($i > 0)
+									{
+										echo '</br>';
+									}									
+									
 									$checkins[$i] = str_replace("=|=", "|", $checkins[$i]);
 									$splitCheckin = explode("|", $checkins[$i]);
-									//TEST
-									if ($splitCheckin[8] != "")
+									echo ("</br>");
+									if ($splitCheckin[7] != "") //Datum und Uhrzeit
+										echo 'Person war am '  . $sr->convertUtcToGermanDate($splitCheckin[7]);
+									if ($splitCheckin[6] != "") //Gerät
 									{
-										$splitCheckin[8] = str_replace("%$%", "|", $splitCheckin[8]);
-										$splitCheckinTags = explode("|", $splitCheckin[8]);
+										$splitCheckin[6] = str_replace("Facebook for", "", $splitCheckin[6]);
+										echo  ' mit dem ' . trim($splitCheckin[6]); 
+									}
+									if ($splitCheckin[3] != "") //Ort
+										echo ' in ' . $splitCheckin[3];
+									if ($splitCheckin[2] != "") //Straße
+										echo ', ' . $splitCheckin[2];
+									if ($splitCheckin[8] != "") //Mit dabei
+									{
+										$splitCheckin[8] = str_replace("%$%", ", ", $splitCheckin[8]);
+										echo ' mit ' . $splitCheckin[8];
+									}
+									
+									echo ' unterwegs...';
+									
+									if ($splitCheckin[9] != "") //Kommentare
+									{
+										$splitCheckin[9] = str_replace("%$%", "|", $splitCheckin[9]);
+										$checkinComments = explode("|", $splitCheckin[9]);
+										echo '</br>';
+										echo '</br>';
+										echo 'Diskussion zwischen eventuellen Komplizen: ';
 										
-										for ($z = 0; $z < sizeof($splitCheckinTags); $z++)
+										for ($n = 0; $n < sizeof($checkinComments); $n++)
 										{
-											echo "war dabei: " . $splitCheckinTags[$z];
+											$checkinComments[$n] = str_replace("?$?", "|", $checkinComments[$n]);
+											$checkinComment = explode("|", $checkinComments[$n]);
+											echo '</br>';
+											
+											if ($checkinComment[0] != "")
+												echo $checkinComment[0] . " meinte dazu ";
+											if ($checkinComment[1] != "")
+												echo $checkinComment[1];	
 										}
 									}
-									if ($splitCheckin[9] != "")
-									{
-										$splitCheckin[9] = str_replace("%$%", "|", $splitCheckin[9]); 
-										$splitCheckinComments = explode("|", $splitCheckin[9]);
-									}
-
-									for ($n = 0; $n < sizeof($splitCheckinComments); $n++)
-									{
-										$splitCheckinComments[$n] = str_replace("?%?", "|", $splitCheckinComments[$n]);
-										var_dump($splitCheckinComments[$n]);
-										$splitComment = explode("|", $splitCheckinComments[$n]);
-										
-										echo $splitComment[0] . " schrieb " . $splitComment[1] . " am " . $splitComment[2];
-									}
-										
-									
-									//echo $sr->translateEventTextFormEnglishToGerman($splitEvent[4]) . " an " . $splitEvent[0] . " in " . $splitEvent[3];
-									//echo $checkins[$i];
-								
-								
-									if ($number > 1 && ($i+1) < $number)
-										echo ', ';
 								}
 								echo '</p>';
 							}
  							
 						echo '</div>'; //endtag - profileInfoBottom
-						
-						
-						
-						/*
-				
-
-				/*
-				
-				
-
-				
-
-				
-
-				
-
-			     
-				
-				
-
-
-
-				//Interessen an
-				$interests = $facebook->getUser_InterestsIn();
-				print ("</br>");
-				print ("<b>Interests:</b>");
-				print ("</br>");
-				foreach ($interests as $interest)
-				{
-						print ($interest);
-						print ("</br>");
-				}
-				print ("<b>Anzahl Interesse: </b>" . $facebook->getUser_NumberOfInterestIn());
-
-				//User-Checkins
-				$checkins = $facebook->getUser_Checkins(0);
-				print ("</br>");
-				print ("<b>User-Checkins:</b>");
-				print ("</br>");
-				foreach ($checkins as $check)
-				{
-						print ($check);
-						print ("</br>");
-				}
-				print ("<b>Anzahl User-Checkins: </b>" . $sr->convertUtcToGermanDate($facebook->getUser_NumberOfCheckins()));
-				
- */
-
-				//echo '</div>';		
 				echo '</td>';
 				echo '</tr>';
 				echo '</table>';

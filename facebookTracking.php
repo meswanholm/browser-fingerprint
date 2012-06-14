@@ -650,7 +650,8 @@
 		{//SOLL ES DIE MÖGLICHKEIT GEBEN?
 			$params = array( 'next' => $this->logout_url); //Wo geht es hin nach dem Logout?
 			$logout_url = $this->facebook->getLogoutUrl($this->params); // $params is optional. 
-			echo '<p><a href="' . $logout_url . '">Logout</a></p>';
+			//echo '<p><a href="' . $logout_url . '">Logout</a></p>';
+			echo '<p><a href="' . $logout_url . '"><img id="fbLogout" src="images/logout_100x28.png"></img></a></p>'; 
 		}
 	}
 ?>

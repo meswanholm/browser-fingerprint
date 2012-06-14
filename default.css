@@ -37,6 +37,13 @@ img {
     -webkit-filter: grayscale(1); 						/* Chrome */
 }
 
+#fbLogout {
+	height: 28px;
+	width: 100px;
+	min-height: 28px;
+	min-width: 100px;
+}
+
 #top {
 	height:228px;
 	width:900px;
